@@ -1,0 +1,10 @@
+../Core/Src/mot_pwm_driver.c:7:9:mot_pwm_driver_init	3
+../Core/Src/mot_pwm_driver.c:25:9:mot_pwm_driver_start	3
+../Core/Src/mot_pwm_driver.c:36:9:mot_pwm_driver_stop	3
+../Core/Src/mot_pwm_driver.c:52:6:mot_pwm_driver_SetPrescaler	1
+../Core/Src/mot_pwm_driver.c:58:6:mot_pwm_driver_SetPeriod	1
+../Core/Src/mot_pwm_driver.c:64:6:mot_pwm_driver_SetCounter	1
+../Core/Src/mot_pwm_driver.c:70:6:mot_pwm_driver_SetDutyCycle	4
+../Core/Src/mot_pwm_driver.c:82:10:mot_pwm_driver_getCnt	1
+../Core/Src/mot_pwm_driver.c:88:10:mot_pwm_driver_getCrr	4
+../Core/Src/mot_pwm_driver.c:99:10:mot_pwm_driver_getArr	1
