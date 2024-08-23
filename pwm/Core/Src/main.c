@@ -70,8 +70,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  uint32_t ccr;
-  uint16_t duty_cycle = 0;
+	uint32_t ccr;
+	uint16_t duty_cycle = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -103,10 +103,7 @@ int main(void)
   while (1)
   {
 	  duty_cycle += 1;
-	  ccr = (uint16_t)(duty_cycle * (float)(1 + 89));
-	  // ccr = (uint16_t)(duty_cycle*(float)(1 + ARR));
-	  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, ccr);
-	  hdl->Instance->EGR = TIM_EGR_UG;
+	  SetDutyCycle(&htim2, duty_cycle);
 	  HAL_Delay(1000);
 
     /* USER CODE END WHILE */
