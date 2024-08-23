@@ -70,8 +70,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	uint32_t ccr;
-	uint16_t duty_cycle = 0;
+  uint32_t ccr;
+  uint16_t duty_cycle = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
