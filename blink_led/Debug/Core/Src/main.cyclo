@@ -1,0 +1,5 @@
+../Core/Src/main.c:9:6:RCC_init	2
+../Core/Src/main.c:27:6:GPIO_Init	1
+../Core/Src/main.c:45:6:toggle_led	1
+../Core/Src/main.c:52:6:delay_msecs	2
+../Core/Src/main.c:61:5:main	1
