@@ -59,8 +59,8 @@ all: main-build
 main-build: 01-lab-gpio-registers.elf secondary-outputs
 
 # Tool invocations
-01-lab-gpio-registers.elf 01-lab-gpio-registers.map: $(OBJS) $(USER_OBJS) /Users/simy/Desktop/embedded\ control/01-lab-gpio-registers/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "01-lab-gpio-registers.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/simy/Desktop/embedded control/01-lab-gpio-registers/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="01-lab-gpio-registers.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+01-lab-gpio-registers.elf 01-lab-gpio-registers.map: $(OBJS) $(USER_OBJS) C:\Users\Francesco\ Stasi\OneDrive\ -\ Politecnico\ di\ Bari\UNI_Embedded_Control\Self-balancing-bike\blink_led\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "01-lab-gpio-registers.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\blink_led\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="01-lab-gpio-registers.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
