@@ -76,8 +76,8 @@ void SetCounter(TIM_HandleTypeDef *htim, uint32_t crr){
 
 //set the duty cycle
 void SetDutyCycle(TIM_HandleTypeDef *htim, uint32_t dutyCycle){
-	uint16_t ccr=(uint16_t)(dutyCycle*(float)((htim->Instance->ARR)+1));
-	__HAL_TIM_SET_COMPARE(htim,htim->Channel,ccr);
+	uint16_t ccr = (uint16_t)(dutyCycle * (float)(getArr(TIM_HandleTypeDef *htim) + 1));
+	__HAL_TIM_SET_COMPARE(htim, htim->Channel, ccr);
 	htim->Instance->EGR = TIM_EGR_UG;
 
 }
