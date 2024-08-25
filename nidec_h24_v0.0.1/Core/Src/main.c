@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
-#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -67,7 +66,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	uint32_t ccr = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -88,10 +86,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Init(&htim2);
+  TIM2->CCR1 = 50;
+  //HAL_TIM_PWM_Init(&htim2);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
   //nidec_h24_SetDutyCycle(&htim2, 0.6);
@@ -101,13 +99,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  ccr += 100;
-	      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, ccr);
-	      if (ccr >= 89999){
-	        ccr = 0;
-	      }
-	      htim2.Instance->EGR = TIM_EGR_UG;
-	      HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
