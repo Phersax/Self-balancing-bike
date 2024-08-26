@@ -60,8 +60,8 @@ all: main-build
 main-build: nidec_h24_test.elf secondary-outputs
 
 # Tool invocations
-nidec_h24_test.elf nidec_h24_test.map: $(OBJS) $(USER_OBJS) /Users/simy/Documents/GitHub/Self-balancing-bike/nidec_h24_test/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "nidec_h24_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/simy/Documents/GitHub/Self-balancing-bike/nidec_h24_test/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="nidec_h24_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+nidec_h24_test.elf nidec_h24_test.map: $(OBJS) $(USER_OBJS) C:\Users\Francesco\ Stasi\OneDrive\ -\ Politecnico\ di\ Bari\UNI_Embedded_Control\Self-balancing-bike\nidec_h24_test\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "nidec_h24_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\nidec_h24_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="nidec_h24_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

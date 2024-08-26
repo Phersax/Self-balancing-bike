@@ -1,13 +1,14 @@
 #include <nidec_h24.h>
+#include <stm32f4xx_hal.h>
 #include <main.h>
 #include <stdio.h>
 #include <stdint.h>
 
 /*Default timer settings*/
-static TIM_HandleTypeDef htim5;
-static uint32_t Channel = TIM_CHANNEL_1;
-static uint16_t direction_pin;
-static GPIO_TypeDef *direction_port;
+extern  TIM_HandleTypeDef htim5;
+static  uint32_t Channel = TIM_CHANNEL_1;
+static  uint16_t direction_pin;
+static  GPIO_TypeDef *direction_port;
 
 /*Init the motor*/
 
@@ -47,6 +48,7 @@ void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
 	HAL_GPIO_WritePin(DIRECTION_GPIO_Port, DIRECTION_Pin, GPIO_PIN_RESET);
 
 	// Start PWM on the specified timer and channel
+	TIM5->CCR1 = 0;
 	HAL_TIM_PWM_Start(&htim5, Channel);
 }
 
@@ -55,16 +57,16 @@ void nidec_h24_Move(uint32_t dutyCycle, uint8_t dir){
     if (dutyCycle > 100) dutyCycle = 100;
 
     // Calculate the compare value
-    uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
+    //uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
     // Set the PWM duty cycle
-    TIM5->CCR1 = ccr;
+    TIM5->CCR1 = dutyCycle;
 
 	// Set direction motor
 	HAL_GPIO_WritePin(direction_port, direction_pin, dir);
 
     // Generate an update event to reload the value immediately
-    htim5.Instance->EGR = TIM_EGR_UG;
+    //htim5.Instance->EGR = TIM_EGR_UG;
 }
 
 /*Get function at runtime*/

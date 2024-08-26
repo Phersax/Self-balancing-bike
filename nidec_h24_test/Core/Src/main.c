@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "stm32f4xx_hal.h"
 #include "nidec_h24.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -94,21 +95,24 @@ int main(void)
   MX_DMA_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
+  //HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
   nidec_h24_init(GPIO_PIN_10, GPIOB);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 nidec_h24_Move(50, 0);
+	 nidec_h24_Move(90, 0); //antiorario
 	 HAL_Delay(5000);
 
 	 nidec_h24_Move(50, 1);
 	 HAL_Delay(5000);
 
-	 nidec_h24_Move(25, 0);
+	 nidec_h24_Move(25, 0); //antiorario
+	 HAL_Delay(5000);
+
+	 nidec_h24_Move(0, 1);
 	 HAL_Delay(5000);
     /* USER CODE END WHILE */
 
@@ -184,9 +188,9 @@ static void MX_TIM5_Init(void)
 
   /* USER CODE END TIM5_Init 1 */
   htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 45;
+  htim5.Init.Prescaler = 89;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 100-1;
+  htim5.Init.Period = 99;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
