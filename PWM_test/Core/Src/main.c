@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "nidec_h24.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,17 +41,14 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef htim1;
-DMA_HandleTypeDef hdma_tim1_ch1;
 
 /* USER CODE BEGIN PV */
-
+TIM_HandleTypeDef htim1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_DMA_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -89,29 +87,58 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_TIM1_Init();
+
   /* USER CODE BEGIN 2 */
-  TIM1->CCR1 = 100;
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  TIM_HandleTypeDef htim1;
+  nidec_h24_start_pwm(&htim1, TIM_CHANNEL_1);
 
-  //HAL_TIM_Base_Start(&htim1);
-  //nidec_h24_init(&htim1, TIM_CHANNEL_1);
-
-  //nidec_h24_SetDutyCycle(&htim1, 0.6);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
-	  HAL_Delay(5000);
+	  HAL_Delay(1000);
 	  TIM1->CCR1 = 50;
-	  HAL_Delay(5000);
-	  TIM1->CCR1 = 0;
-	  HAL_Delay(5000);
+	  //nidec_h24_SetDutyCycle(&htim1, TIM_CHANNEL_1, 50);
+	  //htim1.Instance->CCR1 = 50;
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 50);
+	  //HAL_Delay(3000);
+	  TIM1->CCR1 = 75;
+	  //nidec_h24_SetDutyCycle(&htim1, TIM_CHANNEL_1, 75);
+	  //htim1.Instance->CCR1 = 75;
+	  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 75);
+	  HAL_Delay(3000);
+	  //nidec_h24_SetDutyCycle(&htim1, TIM_CHANNEL_1, 100);
 	  TIM1->CCR1 = 100;
+	  //htim1.Instance->CCR1 = 100;
+	  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 100);
+	  HAL_Delay(3000);
+
+	  HAL_GPIO_WritePin(GPIOB, DIRECTION_PIN_Pin, GPIO_PIN_SET);
+	  HAL_Delay(3000);
+	  TIM1->CCR1 = 50;
+	  //nidec_h24_SetDutyCycle(&htim1, TIM_CHANNEL_1, 50);
+	  //htim1.Instance->CCR1 = 50;
+	  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 50);
+	  HAL_Delay(3000);
+	  TIM1->CCR1 = 75;
+	  //nidec_h24_SetDutyCycle(&htim1, TIM_CHANNEL_1, 75);
+	  //htim1.Instance->CCR1 = 75;
+	  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 75);
+	  HAL_Delay(3000);
+	  //nidec_h24_SetDutyCycle(&htim1, TIM_CHANNEL_1, 100);
+	  TIM1->CCR1 = 100;
+	  //htim1.Instance->CCR1 = 100;
+	  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 100);
+	  HAL_Delay(3000);
+
+	  HAL_GPIO_WritePin(GPIOB, DIRECTION_PIN_Pin, GPIO_PIN_RESET);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -232,34 +259,30 @@ static void MX_TIM1_Init(void)
 }
 
 /**
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
-
-  /* DMA controller clock enable */
-  __HAL_RCC_DMA2_CLK_ENABLE();
-
-  /* DMA interrupt init */
-  /* DMA2_Stream1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream1_IRQn);
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(DIRECTION_PIN_GPIO_Port, DIRECTION_PIN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : DIRECTION_PIN_Pin */
+  GPIO_InitStruct.Pin = DIRECTION_PIN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(DIRECTION_PIN_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

@@ -60,8 +60,8 @@ all: main-build
 main-build: PWM_test.elf secondary-outputs
 
 # Tool invocations
-PWM_test.elf PWM_test.map: $(OBJS) $(USER_OBJS) C:\Users\Francesco\STM32CubeIDE\workspace_1.16.0\PWM_test\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "PWM_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Francesco\STM32CubeIDE\workspace_1.16.0\PWM_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PWM_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+PWM_test.elf PWM_test.map: $(OBJS) $(USER_OBJS) /Users/simy/Documents/GitHub/Self-balancing-bike/PWM_test/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "PWM_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/simy/Documents/GitHub/Self-balancing-bike/PWM_test/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PWM_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -1,5 +1,10 @@
-../Core/Src/nidec_h24.c:9:6:nidec_h24_init	1
-../Core/Src/nidec_h24.c:63:6:nidec_h24_SetPrescaler	1
-../Core/Src/nidec_h24.c:69:6:nidec_h24_SetPeriod	1
-../Core/Src/nidec_h24.c:75:6:nidec_h24_SetCounter	1
-../Core/Src/nidec_h24.c:81:6:nidec_h24_SetDutyCycle	4
+../Core/Src/nidec_h24.c:13:9:nidec_h24_start_pwm	7
+../Core/Src/nidec_h24.c:31:9:nidec_h24_stop_pwm	7
+../Core/Src/nidec_h24.c:52:6:nidec_h24_SetPrescaler	1
+../Core/Src/nidec_h24.c:62:6:nidec_h24_SetPeriod	1
+../Core/Src/nidec_h24.c:72:6:nidec_h24_SetCounter	1
+../Core/Src/nidec_h24.c:82:6:nidec_h24_SetDutyCycle	6
+../Core/Src/nidec_h24.c:118:10:nidec_h24_GetPeriod	1
+../Core/Src/nidec_h24.c:124:10:nidec_h24_GetPrescaler	1
+../Core/Src/nidec_h24.c:130:10:nidec_h24_GetCounter	1
+../Core/Src/nidec_h24.c:136:10:nidec_h24_GetDutyCycle	4
