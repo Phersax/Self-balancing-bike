@@ -5,28 +5,31 @@
 
 /*Default timer settings*/
 static TIM_HandleTypeDef htim5;
-static uint32_t TIM_CHANNEL_1;
-TIM5->CCR1 = 0;
-
-typedef struct {
-  GPIO_TypeDef * pGPIO;
-  uint32_t       pin;
-} gpio_pin_t;
+static uint32_t Channel = TIM_CHANNEL_1;
+static uint16_t direction_pin;
+static GPIO_TypeDef *direction_port;
 
 /*Init the motor*/
-void nidec_h24_init(uint16_t Direction_Pin, GPIO_TypeDef *Direction_GPIO_Port){
+
+void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
+
+    GPIO_InitTypeDef GPIO_InitStruct = {0};  // Declare the GPIO init struct
+
+    direction_pin = DIRECTION_Pin;
+    direction_port = DIRECTION_GPIO_Port;
 
 	/*Configure GPIO pin : Direction_Pin */
-	GPIO_InitStruct.Pin = Direction_Pin;
+	GPIO_InitStruct.Pin = DIRECTION_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	HAL_GPIO_Init(Direction_GPIO_Port, &GPIO_InitStruct);
-	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_Init(DIRECTION_GPIO_Port, &GPIO_InitStruct);
 
-	HAL_TIM_PWM_Start(htim5, TIM_CHANNEL_1);
-	// Start PWM
+	// Set the pin to low initially
+	HAL_GPIO_WritePin(DIRECTION_GPIO_Port, DIRECTION_Pin, GPIO_PIN_RESET);
 
+	// Start PWM on the specified timer and channel
+	HAL_TIM_PWM_Start(&htim5, Channel);
 }
 
 void nidec_h24_Move(uint32_t dutyCycle, uint8_t dir){
@@ -37,11 +40,10 @@ void nidec_h24_Move(uint32_t dutyCycle, uint8_t dir){
     uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
     // Set the PWM duty cycle
-    //__HAL_TIM_SET_COMPARE(htim, Channel, ccr);
     TIM5->CCR1 = ccr;
 
 	// Set direction motor
-	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, dir);
+	HAL_GPIO_WritePin(direction_port, direction_pin, dir);
 
     // Generate an update event to reload the value immediately
     htim5.Instance->EGR = TIM_EGR_UG;
@@ -50,27 +52,27 @@ void nidec_h24_Move(uint32_t dutyCycle, uint8_t dir){
 /*Get function at runtime*/
 
 // get period
-uint32_t nidec_h24_GetPeriod(TIM_HandleTypeDef *htim)
+uint32_t nidec_h24_GetPeriod()
 {
-    return __HAL_TIM_GET_AUTORELOAD(htim);
+    return __HAL_TIM_GET_AUTORELOAD(&htim5);
 }
 
 // get prescaler
-uint32_t nidec_h24_GetPrescaler(TIM_HandleTypeDef *htim)
+uint32_t nidec_h24_GetPrescaler()
 {
-    return htim->Instance->PSC;
+    return htim5.Instance->PSC;
 }
 
 // get counter
-uint32_t nidec_h24_GetCounter(TIM_HandleTypeDef *htim)
+uint32_t nidec_h24_GetCounter()
 {
-    return __HAL_TIM_GET_COUNTER(htim);
+    return __HAL_TIM_GET_COUNTER(&htim5);
 }
 
 // get duty cycle
-uint32_t nidec_h24_GetDutyCycle(TIM_HandleTypeDef *htim, uint32_t Channel)
+uint32_t nidec_h24_GetDutyCycle()
 {
-    uint32_t ccr = __HAL_TIM_GET_COMPARE(htim, Channel);
-    uint32_t arr = __HAL_TIM_GET_AUTORELOAD(htim);
+    uint32_t ccr = __HAL_TIM_GET_COMPARE(&htim5, Channel);
+    uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim5);
     return (ccr * 100) / (arr + 1);
 }

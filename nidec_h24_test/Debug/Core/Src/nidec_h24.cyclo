@@ -1,0 +1,6 @@
+../Core/Src/nidec_h24.c:14:6:nidec_h24_init	1
+../Core/Src/nidec_h24.c:35:6:nidec_h24_Move	2
+../Core/Src/nidec_h24.c:55:10:nidec_h24_GetPeriod	1
+../Core/Src/nidec_h24.c:61:10:nidec_h24_GetPrescaler	1
+../Core/Src/nidec_h24.c:67:10:nidec_h24_GetCounter	1
+../Core/Src/nidec_h24.c:73:10:nidec_h24_GetDutyCycle	4

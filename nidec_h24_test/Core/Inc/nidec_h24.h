@@ -1,6 +1,6 @@
 #include "stm32f4xx_hal.h"
 
-uint8_t nidec_h24_init(uint16_t Direction_Pin, GPIO_TypeDef *Direction_GPIO_Port);
+void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port);
 
 void nidec_h24_Move(uint32_t dutyCycle, uint8_t dir);
 
