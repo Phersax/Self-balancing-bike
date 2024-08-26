@@ -31,8 +31,6 @@ void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
         __HAL_RCC_GPIOG_CLK_ENABLE();
     } else if (DIRECTION_GPIO_Port == GPIOH) {
         __HAL_RCC_GPIOH_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOI) {
-        __HAL_RCC_GPIOI_CLK_ENABLE();
     }
 
     direction_pin = DIRECTION_Pin;

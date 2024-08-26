@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "nidec_h24.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -31,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define GPIOB ((GPIO_TypeDef *) GPIOB_BASE)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -93,8 +94,7 @@ int main(void)
   MX_DMA_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
-  TIM5->CCR1 = 90;
+  nidec_h24_init(GPIO_PIN_10, GPIOB);
 
   /* USER CODE END 2 */
 
@@ -102,6 +102,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	 nidec_h24_Move(50, 0);
+	 HAL_Delay(5000);
+
+	 nidec_h24_Move(50, 1);
+	 HAL_Delay(5000);
+
+	 nidec_h24_Move(25, 0);
+	 HAL_Delay(5000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -176,7 +184,7 @@ static void MX_TIM5_Init(void)
 
   /* USER CODE END TIM5_Init 1 */
   htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 899;
+  htim5.Init.Prescaler = 45;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim5.Init.Period = 100-1;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -238,12 +246,24 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : Direction_Pin */
+  GPIO_InitStruct.Pin = Direction_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Direction_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
