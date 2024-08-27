@@ -104,16 +104,16 @@ int main(void)
   while (1)
   {
 	 nidec_h24_Move(90, 0); //antiorario
-	 HAL_Delay(5000);
+	 HAL_Delay(1500);
 
 	 nidec_h24_Move(50, 1);
-	 HAL_Delay(5000);
+	 HAL_Delay(1500);
 
 	 nidec_h24_Move(25, 0); //antiorario
-	 HAL_Delay(5000);
+	 HAL_Delay(1500);
 
 	 nidec_h24_Move(0, 1);
-	 HAL_Delay(5000);
+	 HAL_Delay(1500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
