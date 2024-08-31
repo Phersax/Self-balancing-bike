@@ -1,0 +1,8 @@
+../Core/Src/mpu6050.c:8:6:mpu6050_init	2
+../Core/Src/mpu6050.c:41:7:mpu6050_accx	1
+../Core/Src/mpu6050.c:48:7:mpu6050_accy	1
+../Core/Src/mpu6050.c:55:7:mpu6050_accz	1
+../Core/Src/mpu6050.c:63:7:mpu6050_gyrox	1
+../Core/Src/mpu6050.c:70:7:mpu6050_gyroy	1
+../Core/Src/mpu6050.c:77:7:mpu6050_gyroz	1
+../Core/Src/mpu6050.c:85:7:mpu6050_temp	1
