@@ -49,18 +49,25 @@ void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
 
 	// Start PWM on the specified timer and channel
 	TIM5->CCR1 = 0;
+    HAL_TIM_Base_Start(&htim5);
 	HAL_TIM_PWM_Start(&htim5, Channel);
 }
 
-void nidec_h24_Move(uint32_t dutyCycle, uint8_t dir){
+void nidec_h24_Move(int32_t dutyCycle){
 	// Validate dutyCycle to be within 0 - 100%
-    if (dutyCycle > 100) dutyCycle = 100;
+	int dir;
 
     // Calculate the compare value
     //uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
     // Set the PWM duty cycle
-    TIM5->CCR1 = dutyCycle;
+    TIM5->CCR1 = abs(dutyCycle);
+
+    if (dutyCycle > 0) {
+        dir = 0;
+    }else{
+        dir = 1;
+    }
 
 	// Set direction motor
 	HAL_GPIO_WritePin(direction_port, direction_pin, dir);

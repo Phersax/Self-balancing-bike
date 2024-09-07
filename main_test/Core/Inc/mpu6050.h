@@ -1,6 +1,10 @@
 #ifndef INC_MPU6050_H_
 #define INC_MPU6050_H_
 
+#include "stm32f4xx.h"
+#include <stdio.h>
+#include <stdint.h>
+
 /* MPU6050 registers' addresses */
 #define WHO_AM_I_REG 		0x75
 #define PWR_MGMT_1_REG 		0x6B
@@ -29,19 +33,37 @@
 /* IMU Address */
 #define IMU_ADDR			0xD0
 
-void mpu6050_init();
+/* Scaling */
+#define ACC_SCALE 16384.0
+#define GYRO_SCALE 131.0
+
+HAL_StatusTypeDef mpu6050_init();
+
+void calculate_gyroscope_bias();
+extern short gx_bias;
+extern short gy_bias;
+extern short gz_bias;
+
+typedef struct {
+    short data;
+    HAL_StatusTypeDef status;
+} result;
 
 /* Gyroscope reading MPU6050 */
-short mpu6050_accx();
-short mpu6050_accy();
-short mpu6050_accz();
+result mpu6050_accx();
+result mpu6050_accy();
+result mpu6050_accz();
 
 /* Accelerometer reading MPU6050 */
-short mpu6050_gyrox();
-short mpu6050_gyroy();
-short mpu6050_gyroz();
+result mpu6050_gyrox();
+result mpu6050_gyroy();
+result mpu6050_gyroz();
 
 /* Temperature reading MPU6050 */
 short mpu6050_temp();
+/* Temperature in Celsius */
+float mpu6050_temp_celsius();
+
+float kalman_filter(float new_angle, float new_rate, float dt);
 
 #endif /* INC_MPU6050_H_ */
