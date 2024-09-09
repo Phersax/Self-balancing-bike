@@ -218,3 +218,386 @@ arm-none-eabi-size  kalman_sf.elf
   22956	    120	   2104	  25180	   625c	kalman_sf.elf
 Finished building: default.size.stdout
  
+17:48:37 **** Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:49:33 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:49:39 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:50:17 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:50:46 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:51:02 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:52:00 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23044	    120	   2104	  25268	   62b4	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+17:58:37 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:00:15 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:00:21 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:01:13 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:04:10 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/mpu6050.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu6050.d" -MT"Core/Src/mpu6050.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu6050.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23052	    120	   2104	  25276	   62bc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:05:54 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23052	    120	   2104	  25276	   62bc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:08:48 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mpu6050.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu6050.d" -MT"Core/Src/mpu6050.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu6050.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:10:14 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:10:52 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:11:57 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23116	    120	   2104	  25340	   62fc	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:22:31 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/filter.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/filter.d" -MT"Core/Src/filter.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/filter.o"
+../Core/Src/filter.c: In function 'updateOrientation':
+../Core/Src/filter.c:19:3: error: 'old_roll' undeclared (first use in this function)
+   19 |   old_roll = or.roll;
+      |   ^~~~~~~~
+../Core/Src/filter.c:19:3: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/filter.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+18:23:19 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/filter.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/filter.d" -MT"Core/Src/filter.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/filter.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:24:05 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:24:12 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:25:41 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:26:46 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:29:55 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:31:08 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:31:22 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:32:06 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:32:18 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:32:37 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:34:03 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23132	    120	   2104	  25356	   630c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:35:27 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+18:37:15 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:38:11 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:38:15 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:40:04 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:41:57 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:42:27 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:44:02 **** Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+18:44:57 **** Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23396	    104	   2232	  25732	   6484	main_test.elf
+Finished building: default.size.stdout
+ 
+18:47:26 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  23692	    104	   2240	  26036	   65b4	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:49:01 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23692	    104	   2240	  26036	   65b4	main_test.elf
+Finished building: default.size.stdout
+ 
+18:51:18 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23692	    104	   2240	  26036	   65b4	main_test.elf
+Finished building: default.size.stdout
+ 
+18:52:12 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+19:09:13 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/filter.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/filter.d" -MT"Core/Src/filter.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/filter.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  22972	    120	   2104	  25196	   626c	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 

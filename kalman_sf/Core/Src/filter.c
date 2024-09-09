@@ -8,6 +8,7 @@
 #include "filter.h"
 
 Orientation or;
+float old_roll;
 
 void updateOrientation(float accX, float accY, float accZ, float gyroX, float gyroY, float gyroZ) 
 {
@@ -15,7 +16,9 @@ void updateOrientation(float accX, float accY, float accZ, float gyroX, float gy
   // compute pitch and roll from acc
   float pitchAcc = atan2(accX, sqrt(accY * accY + accZ * accZ)) * 180 / M_PI;
   float rollAcc = atan2(accY, sqrt(accX * accX + accZ * accZ)) * 180 / M_PI;
- 
+
+  old_roll = or.roll;
+
   // include complementary filter
   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
   or.roll = ALPHA * (or.roll + gyroY * DT) + (1 - ALPHA) * rollAcc;

@@ -8,7 +8,7 @@
 #ifndef INC_KALMAN_FNS_H_
 #define INC_KALMAN_FNS_H_
 
-#define ALPHA 0.98
+#define ALPHA 0.70
 #define DT  0.005
 typedef struct {
   float pitch;

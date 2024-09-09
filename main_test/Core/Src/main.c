@@ -193,6 +193,8 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim -> Instance == TIM3){
 		res_gx = mpu6050_gyrox();
+		res_gy = mpu6050_gyroy();
+		res_gz = mpu6050_gyroz();
 		pwm = pid_compute_control_action(&pid, res_gx.data, 0);
 		nidec_h24_Move(pwm);
 	}

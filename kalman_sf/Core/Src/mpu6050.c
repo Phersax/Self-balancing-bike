@@ -2,7 +2,6 @@
 #include <main.h>
 #include <stdio.h>
 #include <stdint.h>
-#include <math.h>
 
 extern I2C_HandleTypeDef hi2c1;
 
