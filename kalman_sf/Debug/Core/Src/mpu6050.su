@@ -1,0 +1,10 @@
+../Core/Src/mpu6050.c:34:19:mpu6050_init	32	static
+../Core/Src/mpu6050.c:67:8:mpu6050_accx	56	static
+../Core/Src/mpu6050.c:77:8:mpu6050_accy	56	static
+../Core/Src/mpu6050.c:87:8:mpu6050_accz	56	static
+../Core/Src/mpu6050.c:98:8:mpu6050_gyrox	56	static
+../Core/Src/mpu6050.c:108:8:mpu6050_gyroy	56	static
+../Core/Src/mpu6050.c:118:8:mpu6050_gyroz	56	static
+../Core/Src/mpu6050.c:129:7:mpu6050_temp	40	static
+../Core/Src/mpu6050.c:136:7:mpu6050_temp_celsius	16	static
+../Core/Src/mpu6050.c:151:7:kalman_filter	48	static

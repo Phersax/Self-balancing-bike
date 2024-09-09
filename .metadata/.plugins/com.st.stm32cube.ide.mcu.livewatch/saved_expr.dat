@@ -1,4 +1,10 @@
-status_gx
+or.roll
+or.pitch
+or.yaw
+ax.data
+ay.data
+az.data
 status
-res_gx.data
-pwm
+gx.data
+gy.data
+gz.data

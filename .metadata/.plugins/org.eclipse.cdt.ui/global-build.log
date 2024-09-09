@@ -1,124 +1,220 @@
-17:22:12 **** Incremental Build of configuration Debug for project main_test ****
+17:30:45 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/filter.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/filter.d" -MT"Core/Src/filter.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/filter.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/filter.c:10:1: error: unknown type name 'Orientation'
+   10 | Orientation or;
+      | ^~~~~~~~~~~
+../Core/Src/filter.c: In function 'updateOrientation':
+../Core/Src/filter.c:20:5: error: request for member 'pitch' in something not a structure or union
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |     ^
+../Core/Src/filter.c:20:14: error: 'ALPHA' undeclared (first use in this function)
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |              ^~~~~
+../Core/Src/filter.c:20:14: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/filter.c:20:25: error: request for member 'pitch' in something not a structure or union
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |                         ^
+../Core/Src/filter.c:20:42: error: 'DT' undeclared (first use in this function); did you mean 'dt'?
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |                                          ^~
+      |                                          dt
+../Core/Src/filter.c:21:5: error: request for member 'roll' in something not a structure or union
+   21 |   or.roll = ALPHA * (or.roll + gyroY * DT) + (1 - ALPHA) * rollAcc;
+      |     ^
+../Core/Src/filter.c:21:24: error: request for member 'roll' in something not a structure or union
+   21 |   or.roll = ALPHA * (or.roll + gyroY * DT) + (1 - ALPHA) * rollAcc;
+      |                        ^
+../Core/Src/filter.c:23:5: error: request for member 'yaw' in something not a structure or union
+   23 |   or.yaw += gyroZ * DT;
+      |     ^
+../Core/Src/filter.c:24:9: error: request for member 'yaw' in something not a structure or union
+   24 |   if (or.yaw < 0) or.yaw += 360;
+      |         ^
+../Core/Src/filter.c:24:21: error: request for member 'yaw' in something not a structure or union
+   24 |   if (or.yaw < 0) or.yaw += 360;
+      |                     ^
+../Core/Src/filter.c:25:14: error: request for member 'yaw' in something not a structure or union
+   25 |   else if (or.yaw > 359) or.yaw -= 360;
+      |              ^
+../Core/Src/filter.c:25:28: error: request for member 'yaw' in something not a structure or union
+   25 |   else if (or.yaw > 359) or.yaw -= 360;
+      |                            ^
+../Core/Src/filter.c: In function 'getPitch':
+../Core/Src/filter.c:30:12: error: request for member 'pitch' in something not a structure or union
+   30 |   return or.pitch;
+      |            ^
+../Core/Src/filter.c: In function 'getRoll':
+../Core/Src/filter.c:33:12: error: request for member 'roll' in something not a structure or union
+   33 |   return or.roll;
+      |            ^
+../Core/Src/filter.c: In function 'getYaw':
+../Core/Src/filter.c:37:12: error: request for member 'yaw' in something not a structure or union
+   37 |   return or.yaw;
+      |            ^
+../Core/Src/filter.c: In function 'getPitch':
+../Core/Src/filter.c:31:1: warning: control reaches end of non-void function [-Wreturn-type]
+   31 | }
+      | ^
+../Core/Src/filter.c: In function 'getRoll':
+../Core/Src/filter.c:34:1: warning: control reaches end of non-void function [-Wreturn-type]
+   34 | }
+      | ^
+../Core/Src/filter.c: In function 'getYaw':
+../Core/Src/filter.c:38:1: warning: control reaches end of non-void function [-Wreturn-type]
+   38 | }
+      | ^
+make: *** [Core/Src/subdir.mk:49: Core/Src/filter.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c:61:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'or'
+   61 | extern Orientation or;
+      |                    ^~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:102:3: error: 'or' undeclared (first use in this function)
+  102 |   or.roll = 0;
+      |   ^~
+../Core/Src/main.c:102:3: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+17:35:53 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/filter.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/filter.d" -MT"Core/Src/filter.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/filter.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/filter.c:10:1: error: unknown type name 'Orientation'
+   10 | Orientation or;
+      | ^~~~~~~~~~~
+../Core/Src/filter.c: In function 'updateOrientation':
+../Core/Src/filter.c:20:5: error: request for member 'pitch' in something not a structure or union
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |     ^
+../Core/Src/filter.c:20:14: error: 'ALPHA' undeclared (first use in this function)
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |              ^~~~~
+../Core/Src/filter.c:20:14: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/filter.c:20:25: error: request for member 'pitch' in something not a structure or union
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |                         ^
+../Core/Src/filter.c:20:42: error: 'DT' undeclared (first use in this function); did you mean 'dt'?
+   20 |   or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
+      |                                          ^~
+      |                                          dt
+../Core/Src/filter.c:21:5: error: request for member 'roll' in something not a structure or union
+   21 |   or.roll = ALPHA * (or.roll + gyroY * DT) + (1 - ALPHA) * rollAcc;
+      |     ^
+../Core/Src/filter.c:21:24: error: request for member 'roll' in something not a structure or union
+   21 |   or.roll = ALPHA * (or.roll + gyroY * DT) + (1 - ALPHA) * rollAcc;
+      |                        ^
+../Core/Src/filter.c:23:5: error: request for member 'yaw' in something not a structure or union
+   23 |   or.yaw += gyroZ * DT;
+      |     ^
+../Core/Src/filter.c:24:9: error: request for member 'yaw' in something not a structure or union
+   24 |   if (or.yaw < 0) or.yaw += 360;
+      |         ^
+../Core/Src/filter.c:24:21: error: request for member 'yaw' in something not a structure or union
+   24 |   if (or.yaw < 0) or.yaw += 360;
+      |                     ^
+../Core/Src/filter.c:25:14: error: request for member 'yaw' in something not a structure or union
+   25 |   else if (or.yaw > 359) or.yaw -= 360;
+      |              ^
+../Core/Src/filter.c:25:28: error: request for member 'yaw' in something not a structure or union
+   25 |   else if (or.yaw > 359) or.yaw -= 360;
+      |                            ^
+../Core/Src/filter.c: In function 'getPitch':
+../Core/Src/filter.c:30:12: error: request for member 'pitch' in something not a structure or union
+   30 |   return or.pitch;
+      |            ^
+../Core/Src/filter.c: In function 'getRoll':
+../Core/Src/filter.c:33:12: error: request for member 'roll' in something not a structure or union
+   33 |   return or.roll;
+      |            ^
+../Core/Src/filter.c: In function 'getYaw':
+../Core/Src/filter.c:37:12: error: request for member 'yaw' in something not a structure or union
+   37 |   return or.yaw;
+      |            ^
+../Core/Src/filter.c: In function 'getPitch':
+../Core/Src/filter.c:31:1: warning: control reaches end of non-void function [-Wreturn-type]
+   31 | }
+      | ^
+../Core/Src/filter.c: In function 'getRoll':
+../Core/Src/filter.c:34:1: warning: control reaches end of non-void function [-Wreturn-type]
+   34 | }
+      | ^
+../Core/Src/filter.c: In function 'getYaw':
+../Core/Src/filter.c:38:1: warning: control reaches end of non-void function [-Wreturn-type]
+   38 | }
+      | ^
+make: *** [Core/Src/subdir.mk:49: Core/Src/filter.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c:61:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'or'
+   61 | extern Orientation or;
+      |                    ^~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:102:3: error: 'or' undeclared (first use in this function)
+  102 |   or.roll = 0;
+      |   ^~
+../Core/Src/main.c:102:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:167:17: error: 'gx' undeclared (first use in this function)
+  167 |                 gx = mpu6050_gyrox();
+      |                 ^~
+../Core/Src/main.c:168:17: error: 'gy' undeclared (first use in this function)
+  168 |                 gy = mpu6050_gyroy();
+      |                 ^~
+../Core/Src/main.c:169:17: error: 'gz' undeclared (first use in this function)
+  169 |                 gz = mpu6050_gyroz();
+      |                 ^~
+../Core/Src/main.c:170:17: error: 'ax' undeclared (first use in this function)
+  170 |                 ax = mpu6050_accx();
+      |                 ^~
+../Core/Src/main.c:171:17: error: 'ay' undeclared (first use in this function)
+  171 |                 ay = mpu6050_accy();
+      |                 ^~
+../Core/Src/main.c:172:17: error: 'az' undeclared (first use in this function)
+  172 |                 az = mpu6050_accz();
+      |                 ^~
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+17:37:49 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/filter.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/filter.d" -MT"Core/Src/filter.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/filter.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
+ 
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
+   text	   data	    bss	    dec	    hex	filename
+  23028	    120	   2104	  25252	   62a4	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+Finished building: kalman_sf.list
+ 
+17:38:51 **** Incremental Build of configuration Debug for project kalman_sf ****
+make -j12 all 
+arm-none-eabi-size  kalman_sf.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23028	    120	   2104	  25252	   62a4	kalman_sf.elf
+Finished building: default.size.stdout
+ 
+17:43:14 **** Incremental Build of configuration Debug for project kalman_sf ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
+arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: kalman_sf.elf
  
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+arm-none-eabi-size  kalman_sf.elf 
+arm-none-eabi-objdump -h -S kalman_sf.elf  > "kalman_sf.list"
    text	   data	    bss	    dec	    hex	filename
-  23396	    104	   2232	  25732	   6484	main_test.elf
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
 Finished building: default.size.stdout
  
-Finished building: main_test.list
+Finished building: kalman_sf.list
  
-17:22:27 **** Incremental Build of configuration Debug for project main_test ****
+17:45:31 **** Incremental Build of configuration Debug for project kalman_sf ****
 make -j12 all 
-arm-none-eabi-size  main_test.elf 
+arm-none-eabi-size  kalman_sf.elf 
    text	   data	    bss	    dec	    hex	filename
-  23396	    104	   2232	  25732	   6484	main_test.elf
+  22956	    120	   2104	  25180	   625c	kalman_sf.elf
 Finished building: default.size.stdout
- 
-17:25:45 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
- 
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  23396	    104	   2232	  25732	   6484	main_test.elf
-Finished building: default.size.stdout
- 
-Finished building: main_test.list
- 
-17:29:02 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
- 
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  18420	    104	   2208	  20732	   50fc	main_test.elf
-Finished building: default.size.stdout
- 
-Finished building: main_test.list
- 
-17:30:09 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-size  main_test.elf 
-   text	   data	    bss	    dec	    hex	filename
-  18420	    104	   2208	  20732	   50fc	main_test.elf
-Finished building: default.size.stdout
- 
-17:30:51 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
- 
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  18420	    104	   2208	  20732	   50fc	main_test.elf
-Finished building: default.size.stdout
- 
-Finished building: main_test.list
- 
-17:39:53 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
- 
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  23396	    104	   2232	  25732	   6484	main_test.elf
-Finished building: default.size.stdout
- 
-Finished building: main_test.list
- 
-17:44:43 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/nidec_h24.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/nidec_h24.d" -MT"Core/Src/nidec_h24.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/nidec_h24.o"
-../Core/Src/nidec_h24.c: In function 'nidec_h24_Move':
-../Core/Src/nidec_h24.c:64:18: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
-   64 |     TIM5->CCR1 = abs(dutyCycle);
-      |                  ^~~
-../Core/Src/nidec_h24.c:5:1: note: include '<stdlib.h>' or provide a declaration of 'abs'
-    4 | #include <stdio.h>
-  +++ |+#include <stdlib.h>
-    5 | #include <stdint.h>
-../Core/Src/nidec_h24.c:64:22: warning: 'abs' argument 1 promotes to 'int32_t' {aka 'long int'} where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
-   64 |     TIM5->CCR1 = abs(dutyCycle);
-      |                      ^~~~~~~~~
-<built-in>: note: built-in 'abs' declared here
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
- 
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  23392	    104	   2232	  25728	   6480	main_test.elf
-Finished building: default.size.stdout
- 
-Finished building: main_test.list
- 
-17:45:35 **** Incremental Build of configuration Debug for project main_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: main_test.elf
- 
-arm-none-eabi-size  main_test.elf 
-arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  23384	    104	   2232	  25720	   6478	main_test.elf
-Finished building: default.size.stdout
- 
-Finished building: main_test.list
  

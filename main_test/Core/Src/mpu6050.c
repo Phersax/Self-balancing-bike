@@ -133,7 +133,7 @@ short mpu6050_temp(){
 }
 
 float mpu6050_temp_celsius() {
-    short raw_temp = mpu6050_raw_temp();
+    short raw_temp = mpu6050_temp();
     return (raw_temp / 340.0) + 36.53;
 }
 
