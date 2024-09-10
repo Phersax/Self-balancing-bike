@@ -1,0 +1,10 @@
+18:17:55 **** Incremental Build of configuration Debug for project measuring_angles ****
+make -j12 all 
+arm-none-eabi-size  measuring_angles.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21424	    120	   2088	  23632	   5c50	measuring_angles.elf
+Finished building: default.size.stdout
+ 
+
+18:17:55 Build Finished. 0 errors, 0 warnings. (took 300ms)
+

@@ -35,6 +35,7 @@
 
 /* Scaling */
 #define ACC_SCALE 16384.0
+#define ACC_SCALE_Z 14418.0
 #define GYRO_SCALE 131.0
 
 HAL_StatusTypeDef mpu6050_init();
@@ -45,7 +46,7 @@ extern short gy_bias;
 extern short gz_bias;
 
 typedef struct {
-    short data;
+    float data;
     HAL_StatusTypeDef status;
 } result;
 

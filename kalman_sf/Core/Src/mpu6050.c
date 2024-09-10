@@ -55,10 +55,15 @@ HAL_StatusTypeDef mpu6050_init(){
 			/* XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 ->  250 deg/s */
 			data = FS_GYRO_250;
 			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
+
+			//calculate_gyroscope_bias();
 			return HAL_OK;
-		} else {
+		} else if (status == HAL_ERROR){
 			printf("mpu6050 error, check connection cables \n");
 			return HAL_ERROR;
+		}else {
+			printf("mpu6050 busy \n");
+			return HAL_BUSY;
 		}
 }
 
@@ -66,8 +71,8 @@ HAL_StatusTypeDef mpu6050_init(){
 result mpu6050_accx(){
 	uint8_t buffer[14];
 	result res;
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[0] << 8  | buffer[1];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[0] << 8  | buffer[1];
 	res.status = status;
 	res.data = imu_data / ACC_SCALE;
 	return res;
@@ -76,8 +81,8 @@ result mpu6050_accx(){
 result mpu6050_accy(){
 	uint8_t buffer[14];
 	result res;
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-		short imu_data = buffer[2] << 8  | buffer[3];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+		float imu_data = buffer[2] << 8  | buffer[3];
 		res.status = status;
 		res.data = imu_data / ACC_SCALE;
 		return res;
@@ -86,8 +91,8 @@ result mpu6050_accy(){
 result mpu6050_accz(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-		short imu_data = buffer[4] << 8  | buffer[5];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+		float imu_data = buffer[4] << 8  | buffer[5];
 		res.status = status;
 		res.data = imu_data / ACC_SCALE;
 		return res;
@@ -97,8 +102,8 @@ result mpu6050_accz(){
 result mpu6050_gyrox(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[8] << 8  | buffer[9];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[8] << 8  | buffer[9];
 	res.status = status;
 	res.data = imu_data / GYRO_SCALE;
 	return res;
@@ -107,8 +112,8 @@ result mpu6050_gyrox(){
 result mpu6050_gyroy(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[10] << 8  | buffer[11];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[10] << 8  | buffer[11];
 	res.status = status;
     res.data = imu_data / GYRO_SCALE;
 	return res;
@@ -117,23 +122,23 @@ result mpu6050_gyroy(){
 result mpu6050_gyroz(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[12] << 8  | buffer[13];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[12] << 8  | buffer[13];
 	res.status = status;
-	res.data = imu_data / GYRO_SCALE;
+	res.data = imu_data / GYRO_SCALE - 495;
 	return res;
 }
 
 /* Temperature reading MPU6050 */
 short mpu6050_temp(){
 	uint8_t buffer[14];
-	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[6] << 8  | buffer[7];
+	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[6] << 8  | buffer[7];
 	return imu_data;
 }
 
 float mpu6050_temp_celsius() {
-    short raw_temp = mpu6050_temp();
+    float raw_temp = mpu6050_temp();
     return (raw_temp / 340.0) + 36.53;
 }
 

@@ -8,20 +8,22 @@
 #include "filter.h"
 
 Orientation or;
-float old_roll;
 
 void updateOrientation(float accX, float accY, float accZ, float gyroX, float gyroY, float gyroZ) 
 {
 
   // compute pitch and roll from acc
-  float pitchAcc = atan2(accX, sqrt(accY * accY + accZ * accZ)) * 180 / M_PI;
-  float rollAcc = atan2(accY, sqrt(accX * accX + accZ * accZ)) * 180 / M_PI;
+  float pitchAcc = atan(accX / sqrt(accY*accY + accZ*accZ)) * 180 / M_PI;
+  float rollAcc = atan(-accY / sqrt(accX*accX + accZ*accZ)) * 180 / M_PI;
+  //float yawAcc = atan2(accY, accX);
 
-  old_roll = or.roll;
+  float pitchGyro = gyroX * DT;
+  float rollGyro = gyroY * DT;
+  //float yawGyro = gyroZ * DT;
 
   // include complementary filter
-  or.pitch = ALPHA * (or.pitch + gyroX * DT) + (1 - ALPHA) * pitchAcc;
-  or.roll = ALPHA * (or.roll + gyroY * DT) + (1 - ALPHA) * rollAcc;
+  or.pitch = ALPHA * (or.pitch + pitchGyro) + (1 - ALPHA) * pitchAcc;
+  or.roll = ALPHA * (or.roll + rollGyro) + (1 - ALPHA) * rollAcc;
 
   or.yaw += gyroZ * DT;
   if (or.yaw < 0) or.yaw += 360;

@@ -1,12 +1,13 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:nidec_h24_test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:mpu6050_test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:main_test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:kalman_sf Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:nidec_h24_test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:mpu6050_test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:main_test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:measuring_angles Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:kalman_sf Debug
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:kalman_sf\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:kalman_sf\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:main_test\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:main_test\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:measuring_angles\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:mpu6050_test\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:nidec_h24_test\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:nidec_h24_test\ Debug/activeLaunchTarget=null\:---
