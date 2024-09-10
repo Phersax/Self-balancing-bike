@@ -33,9 +33,17 @@
 /* IMU Address */
 #define IMU_ADDR			0xD0
 
-/* Scaling */
-#define ACC_SCALE 16384.0
-#define GYRO_SCALE 131.0
+/* Accelerometer Scaling */
+#define ACC_SCALE_2G			16384
+#define ACC_SCALE_4G			8192
+#define ACC_SCALE_8G			4096
+#define ACC_SCALE_16G			2048
+
+/* Gyroscope Scaling */
+#define GYRO_SCALE_250         131
+#define GYRO_SCALE_100         65.5
+#define GYRO_SCALE_1000        32.8
+#define GYRO_SCALE_2000        16.4
 
 HAL_StatusTypeDef mpu6050_init();
 
