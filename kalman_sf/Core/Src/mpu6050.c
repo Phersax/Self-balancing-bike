@@ -69,7 +69,7 @@ result mpu6050_accx(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
 	short imu_data = buffer[0] << 8  | buffer[1];
 	res.status = status;
-	res.data = imu_data / ACC_SCALE;
+	res.data = imu_data / ACC_SCALE_2G;
 	return res;
 }
 
@@ -79,7 +79,7 @@ result mpu6050_accy(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
 		short imu_data = buffer[2] << 8  | buffer[3];
 		res.status = status;
-		res.data = imu_data / ACC_SCALE;
+		res.data = imu_data / ACC_SCALE_2G;
 		return res;
 }
 
@@ -89,7 +89,7 @@ result mpu6050_accz(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
 		short imu_data = buffer[4] << 8  | buffer[5];
 		res.status = status;
-		res.data = imu_data / ACC_SCALE;
+		res.data = imu_data / ACC_SCALE_2G;
 		return res;
 }
 
@@ -100,7 +100,7 @@ result mpu6050_gyrox(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
 	short imu_data = buffer[8] << 8  | buffer[9];
 	res.status = status;
-	res.data = imu_data / GYRO_SCALE;
+	res.data = imu_data / GYRO_SCALE_250;
 	return res;
 }
 
@@ -110,7 +110,7 @@ result mpu6050_gyroy(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
 	short imu_data = buffer[10] << 8  | buffer[11];
 	res.status = status;
-    res.data = imu_data / GYRO_SCALE;
+    res.data = imu_data / GYRO_SCALE_250;
 	return res;
 }
 
@@ -120,7 +120,7 @@ result mpu6050_gyroz(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
 	short imu_data = buffer[12] << 8  | buffer[13];
 	res.status = status;
-	res.data = imu_data / GYRO_SCALE;
+	res.data = imu_data / GYRO_SCALE_250;
 	return res;
 }
 
