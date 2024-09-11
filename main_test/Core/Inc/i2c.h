@@ -41,6 +41,7 @@ extern I2C_HandleTypeDef hi2c1;
 void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+/* To reset a previously used I2C channel  */
 void I2C_ClearBusyBus(void);
 /* USER CODE END Prototypes */
 
