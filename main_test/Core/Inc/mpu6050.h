@@ -85,8 +85,6 @@ mpu_data mpu6050_data();
 
 /* Temperature reading MPU6050 */
 short mpu6050_temp();
-/* Temperature in Celsius */
-float mpu6050_temp_celsius();
 
 
 #endif /* INC_MPU6050_H_ */
