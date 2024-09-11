@@ -33,37 +33,60 @@
 /* IMU Address */
 #define IMU_ADDR			0xD0
 
-/* Scaling */
-#define ACC_SCALE 16384.0
-#define GYRO_SCALE 131.0
+/* Accelerometer Scaling */
+#define ACC_SCALE_2G			16384.0
+#define ACC_SCALE_2G_Z          14418.0
+#define ACC_SCALE_4G			8192
+#define ACC_SCALE_8G			4096
+#define ACC_SCALE_16G			2048
 
-HAL_StatusTypeDef mpu6050_init();
+/* Gyroscope Scaling */
+#define GYRO_SCALE_250         131
+#define GYRO_SCALE_100         65.5
+#define GYRO_SCALE_1000        32.8
+#define GYRO_SCALE_2000        16.4
 
-void calculate_gyroscope_bias();
 extern short gx_bias;
 extern short gy_bias;
 extern short gz_bias;
 
 typedef struct {
-    short data;
+    float data;
     HAL_StatusTypeDef status;
 } result;
 
-/* Gyroscope reading MPU6050 */
+typedef struct {
+    float ax;
+    float ay;
+    float az;
+    float gx;
+    float gy;
+    float gz;
+} mpu_data;
+
+/*mpu6050 initialization*/
+HAL_StatusTypeDef mpu6050_init();
+
+/*Gyroscope bias calculate*/
+void calculate_gyroscope_bias();
+
+/* Accelerometer reading MPU6050 */
 result mpu6050_accx();
 result mpu6050_accy();
 result mpu6050_accz();
 
-/* Accelerometer reading MPU6050 */
+/* Gyroscope reading MPU6050 */
 result mpu6050_gyrox();
 result mpu6050_gyroy();
 result mpu6050_gyroz();
+
+/* All data reading MPU6050 */
+mpu_data mpu6050_data();
 
 /* Temperature reading MPU6050 */
 short mpu6050_temp();
 /* Temperature in Celsius */
 float mpu6050_temp_celsius();
 
-float kalman_filter(float new_angle, float new_rate, float dt);
 
 #endif /* INC_MPU6050_H_ */

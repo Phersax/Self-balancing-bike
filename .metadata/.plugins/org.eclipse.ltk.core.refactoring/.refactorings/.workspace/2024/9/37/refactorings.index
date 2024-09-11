@@ -4,3 +4,7 @@
 1725878447676	Delete resource 'kalman_sf'
 1725896876209	Delete resource 'kalman_sf'
 1725900225089	Delete resource 'kalman_sf'
+1726042375654	Delete resource 'main_test/Core/Inc/mpu6050.h'
+1726042379034	Delete resource 'main_test/Core/Src/mpu6050.c'
+1726042472369	Rename resource 'kalman_sf'
+1726043571524	Rename resource 'complementary_filter'

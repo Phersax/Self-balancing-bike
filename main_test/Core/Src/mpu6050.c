@@ -9,33 +9,10 @@ short gx_bias = 0;
 short gy_bias = 0;
 short gz_bias = 0;
 
-/*
-void calculate_gyroscope_bias() {
-	// Number of samples to average
-    int num_samples = 1000;  
-    long gx_sum = 0;
-    long gy_sum = 0;
-    long gz_sum = 0;
-
-    for (int i = 0; i < num_samples; i++) {
-        gx_sum += mpu6050_gyrox();
-        gy_sum += mpu6050_gyroy();
-        gz_sum += mpu6050_gyroz();
-        HAL_Delay(1);  
-    }
-
-    gx_bias = gx_sum / num_samples;
-    gy_bias = gy_sum / num_samples;
-    gz_bias = gz_sum / num_samples;
-}
-*/
-
+/*mpu6050 initialization*/
 HAL_StatusTypeDef mpu6050_init(){
 	HAL_StatusTypeDef status = HAL_I2C_IsDeviceReady(&hi2c1, IMU_ADDR, 1, 100);
 		if (status == HAL_OK) {
-			printf("mpu6050 is ready \n");
-			printf("mpu6050 configuration... \n");
-
 			uint8_t data;
 
 			/* power management register 0X6B must be all 0s to wake the sensor up */
@@ -53,133 +30,120 @@ HAL_StatusTypeDef mpu6050_init(){
 
 			/* Set Gyroscope configuration in GYRO_CONFIG Register */
 			/* XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 ->  250 deg/s */
-			data = FS_GYRO_250;
+			data = FS_GYRO_1000;
 			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
-			return HAL_OK;
-		} else {
-			printf("mpu6050 error, check connection cables \n");
-			return HAL_ERROR;
+
+			calculate_gyroscope_bias();
 		}
+		return status;
 }
 
-/* Gyroscope reading MPU6050 */
+/*Gyroscope bias calculate*/
+void calculate_gyroscope_bias() {
+	// Number of samples to average
+    int num_samples = 1000;
+    long gx_sum = 0;
+    long gy_sum = 0;
+    long gz_sum = 0;
+
+    for (int i = 0; i < num_samples; i++) {
+    	uint8_t buffer[14];
+    	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+    	gx_sum += buffer[8] << 8  | buffer[9];
+    	gy_sum += buffer[10] << 8  | buffer[11];
+    	gz_sum += buffer[12] << 8  | buffer[13];
+    }
+
+    gx_bias = gx_sum / num_samples;
+    gy_bias = gy_sum / num_samples;
+    gz_bias = gz_sum / num_samples;
+}
+
+/* Accelerometer reading MPU6050 */
 result mpu6050_accx(){
 	uint8_t buffer[14];
 	result res;
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[0] << 8  | buffer[1];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[0] << 8  | buffer[1];
 	res.status = status;
-	res.data = imu_data / ACC_SCALE;
+	res.data = imu_data / ACC_SCALE_2G;
 	return res;
 }
 
 result mpu6050_accy(){
 	uint8_t buffer[14];
 	result res;
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-		short imu_data = buffer[2] << 8  | buffer[3];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+		float imu_data = buffer[2] << 8  | buffer[3];
 		res.status = status;
-		res.data = imu_data / ACC_SCALE;
+		res.data = imu_data / ACC_SCALE_2G;
 		return res;
 }
 
 result mpu6050_accz(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-		short imu_data = buffer[4] << 8  | buffer[5];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+		float imu_data = buffer[4] << 8  | buffer[5];
 		res.status = status;
-		res.data = imu_data / ACC_SCALE;
+		res.data = imu_data / ACC_SCALE_2G_Z;
 		return res;
 }
 
-/* Accelerometer reading MPU6050 */
+/* Gyroscope reading MPU6050 */
 result mpu6050_gyrox(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[8] << 8  | buffer[9];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[8] << 8  | buffer[9];
 	res.status = status;
-	res.data = imu_data / GYRO_SCALE;
+	res.data = (imu_data - gx_bias)/ GYRO_SCALE_1000;
 	return res;
 }
 
 result mpu6050_gyroy(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[10] << 8  | buffer[11];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[10] << 8  | buffer[11];
 	res.status = status;
-    res.data = imu_data / GYRO_SCALE;
+    res.data = (imu_data - gy_bias) / GYRO_SCALE_1000;
 	return res;
 }
 
 result mpu6050_gyroz(){
 	result res;
 	uint8_t buffer[14];
-	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[12] << 8  | buffer[13];
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[12] << 8  | buffer[13];
 	res.status = status;
-	res.data = imu_data / GYRO_SCALE;
+	res.data = (imu_data - gz_bias) / GYRO_SCALE_1000;
 	return res;
+}
+
+/* All data reading MPU6050 */
+mpu_data mpu6050_data() {
+	uint8_t buffer[14];
+	 HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	 mpu_data data;
+	 data.ax = (int16_t)(buffer[0] << 8 | buffer[1]) / ACC_SCALE_2G;
+	 data.ay = (int16_t)(buffer[2] << 8 | buffer[3]) / ACC_SCALE_2G;
+	 data.az = (int16_t)(buffer[4] << 8 | buffer[5]) / ACC_SCALE_2G_Z;
+	 data.gx = (int16_t)(buffer[8] << 8 | buffer[9]) / GYRO_SCALE_1000;
+	 data.gy = (int16_t)(buffer[10] << 8 | buffer[11]) / GYRO_SCALE_1000;
+	 data.gz = (int16_t)(buffer[12] << 8 | buffer[13]) / GYRO_SCALE_1000;
+	 return data;
 }
 
 /* Temperature reading MPU6050 */
 short mpu6050_temp(){
 	uint8_t buffer[14];
-	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 200);
-	short imu_data = buffer[6] << 8  | buffer[7];
+	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+	float imu_data = buffer[6] << 8  | buffer[7];
 	return imu_data;
 }
 
 float mpu6050_temp_celsius() {
-    short raw_temp = mpu6050_temp();
+    float raw_temp = mpu6050_temp();
     return (raw_temp / 340.0) + 36.53;
-}
-
-
-// Kalman filter variables
-float Q_angle = 0.001;   // Process noise variance (Q)
-float R_measure = 0.03;  // Measurement noise variance (R)
-
-float angle = 0;         // Current angle estimate (state)
-float bias = 0;          // Gyroscope bias
-float rate = 0;          // Angular rate
-float P[2][2] = {{0, 0}, {0, 0}};  // Error covariance matrix
-
-float kalman_filter(float new_angle, float new_rate, float dt) {
-    // Prediction step
-    rate = new_rate - bias;
-    // Subtract the gyroscope bias from the angular rate
-    angle += dt * rate;
-    // Update the predicted angle
-
-    // Update the error covariance matrix
-    P[0][0] += dt * (dt * P[1][1] - P[0][1] - P[1][0] + Q_angle);
-    P[0][1] -= dt * P[1][1];
-    P[1][0] -= dt * P[1][1];
-    P[1][1] += Q_angle * dt;
-
-    // Calculate the Kalman gain
-    float S = P[0][0] + R_measure;   // Measurement error
-    float K[2];                      // Kalman gain
-    K[0] = P[0][0] / S;
-    K[1] = P[1][0] / S;
-
-    // Update the angle with the measurement
-    float y = new_angle - angle;
-    // Difference between measurement and prediction
-    angle += K[0] * y;
-    bias += K[1] * y;
-
-    // Update the error covariance matrix
-    float P00_temp = P[0][0];
-    float P01_temp = P[0][1];
-
-    P[0][0] -= K[0] * P00_temp;
-    P[0][1] -= K[0] * P01_temp;
-    P[1][0] -= K[1] * P00_temp;
-    P[1][1] -= K[1] * P01_temp;
-
-    return angle;
 }

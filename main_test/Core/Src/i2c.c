@@ -31,14 +31,14 @@ void MX_I2C1_Init(void)
 {
 
   /* USER CODE BEGIN I2C1_Init 0 */
-
+  I2C_ClearBusyBus();
   /* USER CODE END I2C1_Init 0 */
 
   /* USER CODE BEGIN I2C1_Init 1 */
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.ClockSpeed = 400000;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
@@ -112,5 +112,43 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 }
 
 /* USER CODE BEGIN 1 */
+void I2C_ClearBusyBus(void)
+{
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
 
+    // Configure SCL and SDA as output for manual control
+    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;  // Open-drain mode
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    // Set both SCL and SDA to high initially
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+
+    // Ensure SDA is high (released)
+    if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9) == GPIO_PIN_RESET)
+    {
+        // SDA is stuck low, so generate 9 clock pulses
+        for (int i = 0; i < 9; i++)
+        {
+            // Toggle the SCL pin to generate a clock pulse
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+            HAL_Delay(1); // Small delay to simulate clock cycle
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+            HAL_Delay(1);
+        }
+    }
+
+    // After the clock cycles, set SDA and SCL back to high
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+
+    // Reconfigure the pins back to I2C mode
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;  // Alternate function open-drain for I2C
+    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1; // Adjust according to your I2C peripheral
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+}
 /* USER CODE END 1 */
