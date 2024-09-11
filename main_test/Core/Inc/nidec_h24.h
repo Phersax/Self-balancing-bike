@@ -4,7 +4,7 @@
 void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port);
 
 /* To make the motor turn based on the input */
-void nidec_h24_Move(int32_t dutyCycle);
+void nidec_h24_Move(float dutyCycle);
 
 /* Useful getter functions to access the parameters of the PWM signal */
 uint32_t nidec_h24_GetPeriod();

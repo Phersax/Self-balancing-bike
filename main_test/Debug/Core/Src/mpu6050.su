@@ -8,4 +8,3 @@
 ../Core/Src/mpu6050.c:114:8:mpu6050_gyroz	64	static
 ../Core/Src/mpu6050.c:125:10:mpu6050_data	80	static
 ../Core/Src/mpu6050.c:139:7:mpu6050_temp	48	static
-../Core/Src/mpu6050.c:146:7:mpu6050_temp_celsius	16	static

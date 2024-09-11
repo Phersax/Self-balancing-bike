@@ -3,6 +3,7 @@
 #include <main.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <math.h>
 
 /*Default timer settings*/
 extern  TIM_HandleTypeDef htim5;
@@ -53,7 +54,7 @@ void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
 }
 
 /* To make the motor turn based on the input */
-void nidec_h24_Move(int32_t dutyCycle){
+void nidec_h24_Move(float dutyCycle){
 	// Validate dutyCycle to be within 0 - 100%
 	int dir;
 
@@ -61,7 +62,7 @@ void nidec_h24_Move(int32_t dutyCycle){
     //uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
     // Set the PWM duty cycle
-    TIM5->CCR1 = abs(dutyCycle);
+    TIM5->CCR1 = fabs(dutyCycle);
 
     if (dutyCycle > 0) {
         dir = 0;

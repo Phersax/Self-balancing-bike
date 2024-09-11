@@ -8,4 +8,3 @@
 ../Core/Src/mpu6050.c:114:8:mpu6050_gyroz	1
 ../Core/Src/mpu6050.c:125:10:mpu6050_data	1
 ../Core/Src/mpu6050.c:139:7:mpu6050_temp	1
-../Core/Src/mpu6050.c:146:7:mpu6050_temp_celsius	1

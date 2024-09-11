@@ -102,7 +102,7 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   pid_init(&pid, 1, 0.1, 0.01, -100, 100);
-  pid_set_setpoint(&pid, 0);
+  pid_set_setpoint(&pid, 2.8);
   status = mpu6050_init();
   nidec_h24_init(GPIO_PIN_10, GPIOB);
   HAL_TIM_Base_Start_IT(&htim3);
