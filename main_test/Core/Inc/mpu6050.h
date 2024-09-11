@@ -39,12 +39,15 @@
 #define ACC_SCALE_4G			8192
 #define ACC_SCALE_8G			4096
 #define ACC_SCALE_16G			2048
+#define ACC_SCALE               ACC_SCALE_2G
+#define ACC_SCALE_Z             ACC_SCALE_2G_Z
 
 /* Gyroscope Scaling */
 #define GYRO_SCALE_250         131
 #define GYRO_SCALE_100         65.5
 #define GYRO_SCALE_1000        32.8
 #define GYRO_SCALE_2000        16.4
+#define GYRO_SCALE             GYRO_SCALE_1000
 
 extern short gx_bias;
 extern short gy_bias;
