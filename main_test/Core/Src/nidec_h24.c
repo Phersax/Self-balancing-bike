@@ -10,8 +10,7 @@ static  uint32_t Channel = TIM_CHANNEL_1;
 static  uint16_t direction_pin;
 static  GPIO_TypeDef *direction_port;
 
-/*Init the motor*/
-
+/* To initialize the PWM and direction pins of the motor */
 void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
 
     GPIO_InitTypeDef GPIO_InitStruct = {0};  // Declare the GPIO init struct
@@ -53,6 +52,7 @@ void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
 	HAL_TIM_PWM_Start(&htim5, Channel);
 }
 
+/* To make the motor turn based on the input */
 void nidec_h24_Move(int32_t dutyCycle){
 	// Validate dutyCycle to be within 0 - 100%
 	int dir;
@@ -78,25 +78,21 @@ void nidec_h24_Move(int32_t dutyCycle){
 
 /*Get function at runtime*/
 
-// get period
 uint32_t nidec_h24_GetPeriod()
 {
     return __HAL_TIM_GET_AUTORELOAD(&htim5);
 }
 
-// get prescaler
 uint32_t nidec_h24_GetPrescaler()
 {
     return htim5.Instance->PSC;
 }
 
-// get counter
 uint32_t nidec_h24_GetCounter()
 {
     return __HAL_TIM_GET_COUNTER(&htim5);
 }
 
-// get duty cycle
 uint32_t nidec_h24_GetDutyCycle()
 {
     uint32_t ccr = __HAL_TIM_GET_COMPARE(&htim5, Channel);
