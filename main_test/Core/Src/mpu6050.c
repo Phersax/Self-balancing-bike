@@ -66,7 +66,7 @@ result mpu6050_accx(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[0] << 8  | buffer[1];
 	res.status = status;
-	res.data = imu_data / ACC_SCALE_2G;
+	res.data = imu_data / ACC_SCALE;
 	return res;
 }
 
@@ -76,7 +76,7 @@ result mpu6050_accy(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 		float imu_data = buffer[2] << 8  | buffer[3];
 		res.status = status;
-		res.data = imu_data / ACC_SCALE_2G;
+		res.data = imu_data / ACC_SCALE;
 		return res;
 }
 
@@ -86,7 +86,7 @@ result mpu6050_accz(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 		float imu_data = buffer[4] << 8  | buffer[5];
 		res.status = status;
-		res.data = imu_data / ACC_SCALE_2G_Z;
+		res.data = imu_data / ACC_SCALE_Z;
 		return res;
 }
 
@@ -97,7 +97,7 @@ result mpu6050_gyrox(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[8] << 8  | buffer[9];
 	res.status = status;
-	res.data = (imu_data - gx_bias)/ GYRO_SCALE_1000;
+	res.data = (imu_data - gx_bias)/ GYRO_SCALE;
 	return res;
 }
 
@@ -107,7 +107,7 @@ result mpu6050_gyroy(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[10] << 8  | buffer[11];
 	res.status = status;
-    res.data = (imu_data - gy_bias) / GYRO_SCALE_1000;
+    res.data = (imu_data - gy_bias) / GYRO_SCALE;
 	return res;
 }
 
@@ -117,7 +117,7 @@ result mpu6050_gyroz(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[12] << 8  | buffer[13];
 	res.status = status;
-	res.data = (imu_data - gz_bias) / GYRO_SCALE_1000;
+	res.data = (imu_data - gz_bias) / GYRO_SCALE;
 	return res;
 }
 
@@ -126,12 +126,12 @@ mpu_data mpu6050_data() {
 	uint8_t buffer[14];
 	 HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	 mpu_data data;
-	 data.ax = (int16_t)(buffer[0] << 8 | buffer[1]) / ACC_SCALE_2G;
-	 data.ay = (int16_t)(buffer[2] << 8 | buffer[3]) / ACC_SCALE_2G;
-	 data.az = (int16_t)(buffer[4] << 8 | buffer[5]) / ACC_SCALE_2G_Z;
-	 data.gx = (int16_t)(buffer[8] << 8 | buffer[9]) / GYRO_SCALE_1000;
-	 data.gy = (int16_t)(buffer[10] << 8 | buffer[11]) / GYRO_SCALE_1000;
-	 data.gz = (int16_t)(buffer[12] << 8 | buffer[13]) / GYRO_SCALE_1000;
+	 data.ax = (int16_t)(buffer[0] << 8 | buffer[1]) / ACC_SCALE;
+	 data.ay = (int16_t)(buffer[2] << 8 | buffer[3]) / ACC_SCALE;
+	 data.az = (int16_t)(buffer[4] << 8 | buffer[5]) / ACC_SCALE_Z;
+	 data.gx = (int16_t)(buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
+	 data.gy = (int16_t)(buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
+	 data.gz = (int16_t)(buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
 	 return data;
 }
 
@@ -139,11 +139,6 @@ mpu_data mpu6050_data() {
 short mpu6050_temp(){
 	uint8_t buffer[14];
 	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
-	float imu_data = buffer[6] << 8  | buffer[7];
-	return imu_data;
-}
-
-float mpu6050_temp_celsius() {
-    float raw_temp = mpu6050_temp();
-    return (raw_temp / 340.0) + 36.53;
+	float raw_temp = buffer[6] << 8  | buffer[7];
+	return (raw_temp / 340.0) + 36.53;
 }
