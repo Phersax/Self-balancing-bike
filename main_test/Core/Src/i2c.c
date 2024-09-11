@@ -31,6 +31,7 @@ void MX_I2C1_Init(void)
 {
 
   /* USER CODE BEGIN I2C1_Init 0 */
+ //To reset a previously used I2C channel
   I2C_ClearBusyBus();
   /* USER CODE END I2C1_Init 0 */
 
@@ -112,6 +113,7 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 }
 
 /* USER CODE BEGIN 1 */
+/* To reset a previously used I2C channel  */
 void I2C_ClearBusyBus(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
