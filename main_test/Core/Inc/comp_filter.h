@@ -1,12 +1,5 @@
-/*
- * kalman_fns.h
- *
- *  Created on: Sep 9, 2024
- *      Author: Forza napoli
- */
-
-#ifndef INC_KALMAN_FNS_H_
-#define INC_KALMAN_FNS_H_
+#ifndef INC_COMP_FILTER_H_
+#define INC_COMP_FILTER_H_
 
 #define ALPHA 0.98 // complementary filter coefficient
 #define DT  0.005 // sampling time
@@ -48,4 +41,4 @@ float getRollAcc();
 float getPitchGyro();
 float getRollGyro();
 
-#endif /* INC_KALMAN_FNS_H_ */
+#endif /* INC_COMP_FILTER_H_ */
