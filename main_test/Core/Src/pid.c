@@ -1,10 +1,8 @@
 #include "pid.h"
 #include "math.h"
 
-static float pid_get_current_sampling_time(PID_t *p);
-void pid_update_ts(PID_t *p);
-
 float p_action, i_action, d_action, error_debug;
+
 
 void pid_init(PID_t *p, float k_p, float k_i, float k_d, float min_out, float max_out){
     p->k_p = k_p;
@@ -17,13 +15,11 @@ void pid_init(PID_t *p, float k_p, float k_i, float k_d, float min_out, float ma
     p->max_output = max_out;
 }
 
+
 void pid_set_setpoint(PID_t *p, float set_point){
     p->set_point = set_point;
 }
 
-float pid_get_setpoint(PID_t *p){
-    return p->set_point;
-}
 
 float pid_compute_control_action(PID_t *p, float est_output, float *est_out_derivative){
     float delta_T;
@@ -80,14 +76,22 @@ float pid_compute_control_action(PID_t *p, float est_output, float *est_out_deri
     return u;
 }
 
+
 float pid_get_error(PID_t *p){
 	return p->last_error;
 }
 
-void pid_update_ts(PID_t *p){
-	p->last_updated_ts = HAL_GetTick();
+
+float pid_get_setpoint(PID_t *p){
+    return p->set_point;
 }
+
 
 static float pid_get_current_sampling_time(PID_t *p){
 	return (float) (HAL_GetTick() - p->last_updated_ts)/1000.0;
+}
+
+
+void pid_update_ts(PID_t *p){
+	p->last_updated_ts = HAL_GetTick();
 }
