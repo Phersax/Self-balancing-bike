@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;kalman_sf/Core/Inc/filter.h&apos; to &apos;comp_filter.h&apos;" description="Rename resource &apos;filter.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/filter.h" name="comp_filter.h" stamp="1726040387860" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;kalman_sf/Core/Src/filter.c&apos; to &apos;comp_filter.c&apos;" description="Rename resource &apos;filter.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/filter.c" name="comp_filter.c" stamp="1726040404956" updateReferences="true"/>
+</session>

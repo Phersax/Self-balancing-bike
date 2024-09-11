@@ -17,6 +17,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <comp_filter.h>
 #include "main.h"
 #include "i2c.h"
 #include "tim.h"
@@ -27,7 +28,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "mpu6050.h"
-#include "filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,12 +49,7 @@
 
 /* USER CODE BEGIN PV */
 HAL_StatusTypeDef status;
-result ax;
-result ay;
-result az;
-result gx;
-result gy;
-result gz;
+mpu_data data;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -66,6 +61,8 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 extern Orientation or;
+float pitch_gyro;
+float pitch_acc;
 /* USER CODE END 0 */
 
 /**
@@ -100,7 +97,6 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-  //mpu6050_init();
   status = mpu6050_init();
   HAL_TIM_Base_Start_IT(&htim3);
   /* USER CODE END 2 */
@@ -166,14 +162,10 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim -> Instance == TIM3){
-		gx = mpu6050_gyrox();
-		gy = mpu6050_gyroy();
-		gz = mpu6050_gyroz();
-		ax = mpu6050_accx();
-		ay = mpu6050_accy();
-		az = mpu6050_accz();
-
-		updateOrientation(gx.data, gy.data, gz.data, ax.data, ay.data, az.data);
+		data = mpu6050_data();
+		updateOrientation(data.ax, data.ay, data.az, data.gx, data.gy, data.gz);
+		pitch_acc = getPitchAcc();
+		pitch_gyro = getPitchGyro();
 	}
 }
 /* USER CODE END 4 */

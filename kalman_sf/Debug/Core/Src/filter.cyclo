@@ -1,4 +1,0 @@
-../Core/Src/filter.c:12:6:updateOrientation	3
-../Core/Src/filter.c:34:7:getPitch	1
-../Core/Src/filter.c:37:7:getRoll	1
-../Core/Src/filter.c:41:7:getYaw	1

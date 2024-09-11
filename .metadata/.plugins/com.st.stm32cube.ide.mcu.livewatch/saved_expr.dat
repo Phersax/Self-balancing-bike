@@ -6,5 +6,5 @@ ax.data
 ay.data
 az.data
 or.pitch
-or.roll
-or.yaw
+pitch_acc
+pitch_gyro
