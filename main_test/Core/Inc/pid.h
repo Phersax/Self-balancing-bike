@@ -32,6 +32,5 @@ void pid_set_setpoint(PID_t *p, float set_point);
 /* Useful getter functions */
 float pid_get_setpoint(PID_t *p);
 float pid_get_error(PID_t *p);
-static float pid_get_current_sampling_time(PID_t *p);
 
 #endif

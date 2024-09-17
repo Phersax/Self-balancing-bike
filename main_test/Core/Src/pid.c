@@ -1,6 +1,8 @@
 #include "pid.h"
 #include "math.h"
 
+static float pid_get_current_sampling_time(PID_t *p);
+
 float p_action, i_action, d_action, error_debug;
 
 
