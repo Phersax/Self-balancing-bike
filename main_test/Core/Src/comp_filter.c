@@ -8,7 +8,7 @@ angleAcc A_acc;
 void updateOrientation(float accX, float accY, float accZ, float gyroX, float gyroY, float gyroZ) 
 {
   // compute pitch and roll from accelerometer
-  updateAnglehAcc(accX, accY,accZ);
+  updateAngleAcc(accX, accY,accZ);
 
   // compute pitch and roll from gyroscope
   updateAngleGyro(gyroX, gyroY);
@@ -18,7 +18,7 @@ void updateOrientation(float accX, float accY, float accZ, float gyroX, float gy
   or.roll = ALPHA * (or.roll + A_acc.rollAcc) + (1 - ALPHA) * A_acc.rollAcc;
 }
 
-void updateAnglehAcc(float accX, float accY, float accZ){
+void updateAngleAcc(float accX, float accY, float accZ){
 	// compute pitch and roll using trigonometric formulas
 	A_acc.pitchAcc = atan(accX / sqrt(accY*accY + accZ*accZ)) * 180 / M_PI;
 	A_acc.rollAcc = atan(-accY / sqrt(accX*accX + accZ*accZ)) * 180 / M_PI;
