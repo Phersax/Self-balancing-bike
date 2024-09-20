@@ -12,3 +12,52 @@ Finished building: default.size.stdout
  
 Finished building: main_test.list
  
+15:34:51 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
+15:35:14 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
+15:35:40 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
+15:36:25 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
+15:37:22 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
+15:37:41 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
+15:39:43 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23728	    128	   2248	  26104	   65f8	main_test.elf
+Finished building: default.size.stdout
+ 
