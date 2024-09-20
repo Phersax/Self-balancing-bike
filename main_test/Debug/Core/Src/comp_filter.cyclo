@@ -1,5 +1,5 @@
 ../Core/Src/comp_filter.c:8:6:updateOrientation	1
-../Core/Src/comp_filter.c:21:6:updateAnglehAcc	1
+../Core/Src/comp_filter.c:21:6:updateAngleAcc	1
 ../Core/Src/comp_filter.c:27:6:updateAngleGyro	1
 ../Core/Src/comp_filter.c:34:7:getPitchAcc	1
 ../Core/Src/comp_filter.c:37:7:getRollAcc	1

@@ -7,57 +7,42 @@
 
 /*Default timer settings*/
 extern  TIM_HandleTypeDef htim5;
-static  uint32_t Channel = TIM_CHANNEL_1;
-static  uint16_t direction_pin;
-static  GPIO_TypeDef *direction_port;
 
 /* To initialize the PWM and direction pins of the motor */
-void nidec_h24_init(uint16_t DIRECTION_Pin, GPIO_TypeDef *DIRECTION_GPIO_Port){
+void nidec_h24_init(){
 
     GPIO_InitTypeDef GPIO_InitStruct = {0};  // Declare the GPIO init struct
 
-    if (DIRECTION_GPIO_Port == GPIOA) {
-        __HAL_RCC_GPIOA_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOB) {
-        __HAL_RCC_GPIOB_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOC) {
-        __HAL_RCC_GPIOC_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOD) {
-        __HAL_RCC_GPIOD_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOE) {
-        __HAL_RCC_GPIOE_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOF) {
-        __HAL_RCC_GPIOF_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOG) {
-        __HAL_RCC_GPIOG_CLK_ENABLE();
-    } else if (DIRECTION_GPIO_Port == GPIOH) {
-        __HAL_RCC_GPIOH_CLK_ENABLE();
-    }
-
-    direction_pin = DIRECTION_Pin;
-    direction_port = DIRECTION_GPIO_Port;
+    __HAL_RCC_GPIOB_CLK_ENABLE();
 
 	/*Configure GPIO pin : Direction_Pin */
-	GPIO_InitStruct.Pin = DIRECTION_Pin;
+	GPIO_InitStruct.Pin = DIRECTION_PIN;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	HAL_GPIO_Init(DIRECTION_GPIO_Port, &GPIO_InitStruct);
+	HAL_GPIO_Init(DIRECTION_PORT, &GPIO_InitStruct);
 
-	// Set the pin to low initially
-	HAL_GPIO_WritePin(DIRECTION_GPIO_Port, DIRECTION_Pin, GPIO_PIN_RESET);
+    /*Configure GPIO pin : Brake_Pin */
+	GPIO_InitStruct.Pin = BRAKE_PIN;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(BRAKE_PORT, &GPIO_InitStruct);
+
+	// Set the direction pin to low initially
+	HAL_GPIO_WritePin(DIRECTION_PORT, DIRECTION_PIN, GPIO_PIN_RESET);
+    
+	// Set the brake pin to low initially
+	HAL_GPIO_WritePin(BRAKE_PORT, BRAKE_PIN, GPIO_PIN_RESET);
 
 	// Start PWM on the specified timer and channel
 	TIM5->CCR1 = 0;
     HAL_TIM_Base_Start(&htim5);
-	HAL_TIM_PWM_Start(&htim5, Channel);
+	HAL_TIM_PWM_Start(&htim5, CHANNEL);
 }
 
 /* To make the motor turn based on the input */
-void nidec_h24_Move(float dutyCycle){
-	// Validate dutyCycle to be within 0 - 100%
-	int dir;
-
+void nidec_h24_Move(float dutyCycle, uint8_t brk){
     // Calculate the compare value
     //uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
@@ -65,13 +50,15 @@ void nidec_h24_Move(float dutyCycle){
     TIM5->CCR1 = 100 - fabs(dutyCycle);
 
     if (dutyCycle > 0) {
-        dir = 0;
+        // counter-clockwise
+        HAL_GPIO_WritePin(DIRECTION_PORT, DIRECTION_PIN, GPIO_PIN_RESET);
     }else{
-        dir = 1;
+        // clockwise
+        HAL_GPIO_WritePin(DIRECTION_PORT, DIRECTION_PIN, GPIO_PIN_SET);
     }
 
-	// Set direction motor
-	HAL_GPIO_WritePin(direction_port, direction_pin, dir);
+    // brk -> 0: brakes
+    HAL_GPIO_WritePin(BRAKE_PORT, BRAKE_PIN, brk);
 
     // Generate an update event to reload the value immediately
     //htim5.Instance->EGR = TIM_EGR_UG;
@@ -96,7 +83,7 @@ uint32_t nidec_h24_GetCounter()
 
 uint32_t nidec_h24_GetDutyCycle()
 {
-    uint32_t ccr = __HAL_TIM_GET_COMPARE(&htim5, Channel);
+    uint32_t ccr = __HAL_TIM_GET_COMPARE(&htim5, CHANNEL);
     uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim5);
     return (ccr * 100) / (arr + 1);
 }

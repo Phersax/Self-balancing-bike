@@ -1,6 +1,6 @@
-../Core/Src/nidec_h24.c:15:6:nidec_h24_init	72	static
-../Core/Src/nidec_h24.c:57:6:nidec_h24_Move	24	static
-../Core/Src/nidec_h24.c:82:10:nidec_h24_GetPeriod	4	static
-../Core/Src/nidec_h24.c:87:10:nidec_h24_GetPrescaler	4	static
-../Core/Src/nidec_h24.c:92:10:nidec_h24_GetCounter	4	static
-../Core/Src/nidec_h24.c:97:10:nidec_h24_GetDutyCycle	16	static
+../Core/Src/nidec_h24.c:12:6:nidec_h24_init	32	static
+../Core/Src/nidec_h24.c:45:6:nidec_h24_Move	24	static
+../Core/Src/nidec_h24.c:69:10:nidec_h24_GetPeriod	4	static
+../Core/Src/nidec_h24.c:74:10:nidec_h24_GetPrescaler	4	static
+../Core/Src/nidec_h24.c:79:10:nidec_h24_GetCounter	4	static
+../Core/Src/nidec_h24.c:84:10:nidec_h24_GetDutyCycle	16	static
