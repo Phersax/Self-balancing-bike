@@ -1,3 +1,7 @@
 status
 or.pitch
 pwm
+set_point
+min_angle
+max_angle
+max_pwm
