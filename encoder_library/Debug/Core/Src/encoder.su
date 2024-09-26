@@ -1,0 +1,7 @@
+../Core/Src/encoder.c:7:19:encoder_init	32	static
+../Core/Src/encoder.c:32:14:__encoder_update	40	static
+../Core/Src/encoder.c:59:7:encoder_get_velocity_rps	16	static
+../Core/Src/encoder.c:66:7:encoder_get_velocity_rpm	16	static
+../Core/Src/encoder.c:73:7:encoder_get_velocity_rads	16	static
+../Core/Src/encoder.c:79:7:encoder_get_position_deg	16	static
+../Core/Src/encoder.c:85:7:encoder_get_position_rad	16	static
