@@ -1,25 +1,33 @@
 #include "encoder.h"
-#inlude "main.h"
+#include "main.h"
 #include <math.h>
 
 uint32_t cur_cnt;
 
-HAL_StatusTypeDef encoder_init(encoder_t *e, TIM_HandleTypeDef *htim)
+HAL_StatusTypeDef encoder_init(encoder_t *e, encoder_resolution_t resolution, TIM_HandleTypeDef *htim, uint32_t ppr)
 {
-    HAL_StatusTypeDeF ret;
-    ret= HAL_OK;
-    if(tim == NULL){
+    HAL_StatusTypeDef ret;
+    ret = HAL_OK;
+    if(htim == NULL){
         return HAL_ERROR;
     }
 
     e -> tim = htim;
-    ret= HAL_ADC_Encoder_Start(e -> tim, TIM_CHANNEL_ALL);
+    ret = HAL_TIM_Encoder_Start(e -> tim, TIM_CHANNEL_ALL);
     if(ret != HAL_OK){
         return ret;
     }
+
+    e -> resolution = resolution;
+    e -> velocity_pps = 0.0;
+    e -> last_sampling_t = HAL_GetTick();
+    e -> last_count = htim -> Instance -> CNT;
+    e -> ppr = ppr;
+
+    return ret;
 }
 
- static void __encoder_update(encoder_t *e)
+static void __encoder_update(encoder_t *e)
 {
     uint32_t now;
     int32_t diff;
@@ -47,7 +55,7 @@ float encoder_get_velocity_rps(encoder_t *e)
 }
 
 
-float encooder_get_velocity_rpm(encoder_t *e)
+float encoder_get_velocity_rpm(encoder_t *e)
 {
     __encoder_update(e);
     return (e->velocity_pps / (float) e->ppr) * 60.0;
