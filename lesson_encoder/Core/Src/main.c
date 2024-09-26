@@ -44,7 +44,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+encoder_t enc;
+float rpm;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -66,9 +67,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  uint8_t buffer[14];
-  encoder_t enc;
-  float rpm;
+  
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -91,14 +90,14 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-  encoder_init(&enc, ENCODER_RES_4, &htim3, 100);
+  encoder_init(&enc, A, &htim3, 10);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    rpm = encoder_get_velocity_rpm(&enc) / 4.0;
+    rpm = encoder_get_velocity_rpm(&enc);
     HAL_Delay(10);
     /* USER CODE END WHILE */
 
