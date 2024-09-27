@@ -42,7 +42,7 @@ inline static void __encoder_update(encoder_t *e)
     cur_velocity = (float) diff / DT / (float) e -> resolution;
 
     // Filtering velocity
-    e -> velocity_pps = ALPHA * e -> velocity_pps + (1.0 - ALPHA) * cur_velocity;
+    e -> velocity_pps = BETA * e -> velocity_pps + (1.0 - BETA) * cur_velocity;
 
     e -> tim -> Instance -> CNT = 0;
     e -> last_count = 0;

@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-#define ALPHA 0.95
+#define BETA 0.95
 #define DT 0.005
 
 typedef enum {
