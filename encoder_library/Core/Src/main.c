@@ -24,6 +24,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "encoder.h"
+#include <stdint.h>
+#include "nidec_h24.h"
+#include "pid.h"
+#include <math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,8 +48,14 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-float rpm;
+float rpm = 0;
 encoder_t enc;
+PID_t pid;
+float pwm;
+float set_point = 0;
+float max_pwm = 100;
+float Kp = 1;
+float Ki, Kd;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -88,17 +98,24 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_TIM3_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-  encoder_init(&enc, A, &htim3, 10);
+  pid_init(&pid, Kp, Ki, Kd, -max_pwm, max_pwm);
+  pid_set_setpoint(&pid, set_point);
+  nidec_h24_init();
+  encoder_init(&enc, AB, &htim1, 100);
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    rpm = encoder_get_velocity_rpm(&enc);
-    HAL_Delay(10);
+	  // HAL_GetTick() returns the number of milliseconds since the program started
+	  pid_set_setpoint(&pid, 50*sinf(2*M_PI*HAL_GetTick()/1000.0));
+	  HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -154,7 +171,13 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	if (htim->Instance == TIM2) {
+		rpm = encoder_get_velocity_rpm(&enc);
+		pwm = pid_compute_control_action(&pid, rpm, NULL);
+		nidec_h24_Move(pwm, 1);
+	}
+}
 /* USER CODE END 4 */
 
 /**

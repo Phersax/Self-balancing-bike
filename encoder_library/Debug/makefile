@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := lesson_encoder
+BUILD_ARTIFACT_NAME := encoder_library
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-lesson_encoder.elf \
+encoder_library.elf \
 
 MAP_FILES += \
-lesson_encoder.map \
+encoder_library.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-lesson_encoder.list \
+encoder_library.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: lesson_encoder.elf secondary-outputs
+main-build: encoder_library.elf secondary-outputs
 
 # Tool invocations
-lesson_encoder.elf lesson_encoder.map: $(OBJS) $(USER_OBJS) C:\Users\simyw\STM32CubeIDE\workspace_1.17.0\lesson_encoder\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "lesson_encoder.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\simyw\STM32CubeIDE\workspace_1.17.0\lesson_encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lesson_encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+encoder_library.elf encoder_library.map: $(OBJS) $(USER_OBJS) C:\Users\simyw\STM32CubeIDE\workspace_1.17.0\encoder_library\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\simyw\STM32CubeIDE\workspace_1.17.0\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-lesson_encoder.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "lesson_encoder.list"
+encoder_library.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "encoder_library.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout lesson_encoder.elf lesson_encoder.list lesson_encoder.map
+	-$(RM) default.size.stdout encoder_library.elf encoder_library.list encoder_library.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
