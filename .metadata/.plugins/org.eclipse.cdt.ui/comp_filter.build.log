@@ -1,0 +1,10 @@
+19:00:34 **** Build of configuration Debug for project comp_filter ****
+make -j12 all 
+arm-none-eabi-gcc -o "comp_filter.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\comp_filter\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="comp_filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/mpu6050.o:C:/Users/Francesco Stasi/OneDrive - Politecnico di Bari/UNI_Embedded_Control/Self-balancing-bike/comp_filter/Debug/../Core/Src/mpu6050.c:12: multiple definition of `data'; ./Core/Src/main.o:C:/Users/Francesco Stasi/OneDrive - Politecnico di Bari/UNI_Embedded_Control/Self-balancing-bike/comp_filter/Debug/../Core/Src/main.c:52: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: comp_filter.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+
+19:00:35 Build Failed. 2 errors, 0 warnings. (took 656ms)
+

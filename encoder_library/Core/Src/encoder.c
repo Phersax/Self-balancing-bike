@@ -2,8 +2,9 @@
 #include "main.h"
 #include <math.h>
 
-uint16_t cur_cnt;
+uint32_t cur_cnt;
 int32_t diff, cur_velocity;
+float beta = 0.95;
 
 HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch,
 		TIM_HandleTypeDef *htim, uint32_t ppr) {
@@ -44,10 +45,12 @@ inline static void __encoder_update(encoder_t *e) {
 			diff = (e->tim->Instance->ARR - cur_cnt) + e->last_count;
 	} else {
 		if (cur_cnt > e->last_count) // overflow
-			diff = cur_cnt - e->last_count;
+			diff = e->last_count - cur_cnt;
 		else
 			diff = (e->tim->Instance->ARR - e->last_count) + cur_cnt;
 	}
+
+	//__HAL_TIM_GET_COUNTER()
 
 	// velocity in pulses per second
 	if (e->last_count == cur_cnt)
@@ -56,8 +59,8 @@ inline static void __encoder_update(encoder_t *e) {
 	cur_velocity = (float) diff / DT / (float) e->resolution;
 
 	// Filtering velocity
-	//e->velocity_pps = BETA * e->velocity_pps + (1.0 - BETA) * cur_velocity;
-	e->velocity_pps = cur_velocity;
+	e->velocity_pps = beta * e->velocity_pps + (1.0 - beta) * cur_velocity;
+	//e->velocity_pps = cur_velocity;
 
 	e->tim->Instance->CNT = 0;
 	e->last_count = 0;

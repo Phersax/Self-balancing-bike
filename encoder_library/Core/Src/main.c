@@ -55,8 +55,13 @@ float pwm = 7;
 float set_point = 0;
 float max_pwm = 100;
 float Kp = 1;
-float Ki, Kd;
+float Ki = 0;
+float Kd;
 float brk = 1;
+float sigA;
+float sigB;
+float sigC = 150;
+float err;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -115,7 +120,12 @@ int main(void)
   while (1)
   {
 	  // HAL_GetTick() returns the number of milliseconds since the program started
-	  //pid_set_setpoint(&pid, 50*sinf(2*M_PI*HAL_GetTick()/1000.0));
+	  sigB++;
+	      if (sigB > 200)
+	    	  sigB = -200;
+
+	  sigA = 250*sinf(2*M_PI*HAL_GetTick()/1800.0);
+	  pid_set_setpoint(&pid, sigA);
 	  HAL_Delay(10);
     /* USER CODE END WHILE */
 
@@ -175,8 +185,10 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
 		rpm = encoder_get_velocity_rpm(&enc);
-		//pwm = pid_compute_control_action(&pid, rpm, NULL);
+		pwm = pid_compute_control_action(&pid, rpm, NULL);
 		nidec_h24_Move(pwm, brk);
+		if (fabs(rpm)- fabs(sigB) > err)
+		err = rpm-sigB;
 	}
 }
 /* USER CODE END 4 */

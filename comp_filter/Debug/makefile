@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := kalman_sf
+BUILD_ARTIFACT_NAME := comp_filter
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-kalman_sf.elf \
+comp_filter.elf \
 
 MAP_FILES += \
-kalman_sf.map \
+comp_filter.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-kalman_sf.list \
+comp_filter.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: kalman_sf.elf secondary-outputs
+main-build: comp_filter.elf secondary-outputs
 
 # Tool invocations
-kalman_sf.elf kalman_sf.map: $(OBJS) $(USER_OBJS) C:\Users\Francesco\ Stasi\OneDrive\ -\ Politecnico\ di\ Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "kalman_sf.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_sf\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_sf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+comp_filter.elf comp_filter.map: $(OBJS) $(USER_OBJS) C:\Users\Francesco\ Stasi\OneDrive\ -\ Politecnico\ di\ Bari\UNI_Embedded_Control\Self-balancing-bike\comp_filter\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "comp_filter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\comp_filter\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="comp_filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-kalman_sf.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "kalman_sf.list"
+comp_filter.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "comp_filter.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout kalman_sf.elf kalman_sf.list kalman_sf.map
+	-$(RM) comp_filter.elf comp_filter.list comp_filter.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
