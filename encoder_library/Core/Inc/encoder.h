@@ -4,7 +4,7 @@
 #include "main.h"
 
 #define BETA 0.95
-#define DT 0.005
+#define DT 0.01
 
 typedef enum {
     A = TIM_CHANNEL_1,

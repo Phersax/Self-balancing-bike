@@ -1,5 +1,5 @@
-../Core/Src/encoder.c:5:19:encoder_init	5
-../Core/Src/encoder.c:26:20:__encoder_update	3
-../Core/Src/encoder.c:51:7:encoder_get_velocity_rps	1
-../Core/Src/encoder.c:58:7:encoder_get_velocity_rpm	1
-../Core/Src/encoder.c:64:7:encoder_get_velocity_rads	1
+../Core/Src/encoder.c:8:19:encoder_init	5
+../Core/Src/encoder.c:33:20:__encoder_update	5
+../Core/Src/encoder.c:66:7:encoder_get_velocity_rps	1
+../Core/Src/encoder.c:71:7:encoder_get_velocity_rpm	1
+../Core/Src/encoder.c:75:7:encoder_get_velocity_rads	1

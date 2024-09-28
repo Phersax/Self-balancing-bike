@@ -47,7 +47,7 @@ void nidec_h24_Move(float dutyCycle, uint8_t brk){
     //uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
     // Set the PWM duty cycle
-    TIM5->CCR1 = 100 - fabs(dutyCycle);
+	TIM5->CCR1 = htim5.Instance->ARR*(1 - fabs(dutyCycle)/100);
 
     if (dutyCycle > 0) {
         // counter-clockwise

@@ -48,14 +48,15 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-float rpm = 0;
+float rpm;
 encoder_t enc;
 PID_t pid;
-float pwm;
+float pwm = 7;
 float set_point = 0;
 float max_pwm = 100;
 float Kp = 1;
 float Ki, Kd;
+float brk = 1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -114,7 +115,7 @@ int main(void)
   while (1)
   {
 	  // HAL_GetTick() returns the number of milliseconds since the program started
-	  pid_set_setpoint(&pid, 50*sinf(2*M_PI*HAL_GetTick()/1000.0));
+	  //pid_set_setpoint(&pid, 50*sinf(2*M_PI*HAL_GetTick()/1000.0));
 	  HAL_Delay(10);
     /* USER CODE END WHILE */
 
@@ -174,8 +175,8 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
 		rpm = encoder_get_velocity_rpm(&enc);
-		pwm = pid_compute_control_action(&pid, rpm, NULL);
-		nidec_h24_Move(pwm, 1);
+		//pwm = pid_compute_control_action(&pid, rpm, NULL);
+		nidec_h24_Move(pwm, brk);
 	}
 }
 /* USER CODE END 4 */

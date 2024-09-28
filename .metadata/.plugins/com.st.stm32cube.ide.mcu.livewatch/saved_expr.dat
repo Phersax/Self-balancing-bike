@@ -5,3 +5,10 @@ set_point
 min_angle
 max_angle
 max_pwm
+rpm
+htim1.Instance->CNT
+cur_cnt
+diff
+enc
+cur_velocity
+brk
