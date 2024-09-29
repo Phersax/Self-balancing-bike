@@ -43,11 +43,9 @@ void nidec_h24_init(){
 
 /* To make the motor turn based on the input */
 void nidec_h24_Move(float dutyCycle, uint8_t brk){
-    // Calculate the compare value
-    //uint32_t ccr = (uint16_t)(dutyCycle * (float)(htim5.Instance->ARR + 1))/100;
 
     // Set the PWM duty cycle
-    TIM5->CCR1 = fabs(dutyCycle)*100/htim5.Instance->ARR;
+	TIM5->CCR1 = htim5.Instance->ARR*(1 - fabs(dutyCycle)/100);
 
     if (dutyCycle > 0) {
         // counter-clockwise
@@ -61,7 +59,6 @@ void nidec_h24_Move(float dutyCycle, uint8_t brk){
     HAL_GPIO_WritePin(BRAKE_PORT, BRAKE_PIN, brk);
 
     // Generate an update event to reload the value immediately
-    //htim5.Instance->EGR = TIM_EGR_UG;
 }
 
 /*Get function at runtime*/

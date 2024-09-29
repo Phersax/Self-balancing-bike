@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <stdint.h>
+#include "encoder.h"
 #include "mpu6050.h"
 #include "comp_filter.h"
 #include "nidec_h24.h"
@@ -51,15 +52,35 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+//IMU
 extern Orientation or;
 mpu_data data;
 HAL_StatusTypeDef status;
-PID_t pid;
+
+//encoder
+encoder_t enc;
+
+//controllers
+PID_t pid_in;
+float Kp_in = 7;
+float Ki_in = 2;
+float Kd_in = 0.06;
+
+PID_t pid_ex;
+float Kp_ex = 25;
+float Ki_ex = 0.8;
+float Kd_ex = 0.06;
+
+//control variables
 float pwm;
-float set_point = 1.8;
+float rpm_y;
+float rpm_r;
+
+float set_point_angle = 1.8;
 float min_angle = 0.4;
 float max_angle = 12;
-float max_pwm = 80;
+float max_rpm = 450;
+float max_pwm = 100;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -105,11 +126,22 @@ int main(void)
   MX_TIM5_Init();
   MX_I2C1_Init();
   MX_TIM3_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-	pid_init(&pid, 1, 0.1, 0.01, -max_pwm, max_pwm);
-	pid_set_setpoint(&pid, set_point);
+	pid_init(&pid_in, Kp_in, Ki_in, Kd_in, -max_pwm, max_pwm);
+	pid_init(&pid_ex, Kp_ex, Ki_ex, Kd_ex, -max_rpm, max_rpm);
+
+	pid_ex.neg_deadzone = set_point_angle - 0.4;
+	pid_ex.pos_deadzone = set_point_angle + 0.4;
+	pid_ex.neg_deadzone = -15;
+	pid_ex.pos_deadzone = set_point_angle + 15;
+
+	pid_set_setpoint(&pid_ex, set_point_angle);
 	status = mpu6050_init();
 	nidec_h24_init();
+	encoder_init(&enc, AB, &htim1, 100);
+	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_TIM_Base_Start_IT(&htim3);
   /* USER CODE END 2 */
 
@@ -176,13 +208,29 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM3) {
 		data = mpu6050_data();
 		updateOrientation(data.ax, data.ay, data.az, data.gx, data.gy, data.gz);
-		if (fabs(or.pitch - set_point) < max_angle && fabs(or.pitch - set_point) > min_angle) {
-			pwm = pid_compute_control_action(&pid, or.pitch, NULL);
-		    nidec_h24_Move(pwm, 1);
-		}
-		else {
+		//rpm_r = pid_compute_control_action(&pid_ex, or.pitch);
+
+
+		if (fabs(or.pitch - set_point_angle) < max_angle) {
+			rpm_r = pid_compute_control_action(&pid_ex, or.pitch);
+		} else {
 			nidec_h24_Move(0, 0);
 		}
+
+
+	}
+	if (htim->Instance == TIM2) {
+		rpm_y = encoder_get_velocity_rpm(&enc);
+		pid_set_setpoint(&pid_in, rpm_r);
+		pwm = pid_compute_control_action(&pid_in, rpm_y);
+		nidec_h24_Move(pwm, 1);
+
+		/*
+		if (pwm =! 0)
+			nidec_h24_Move(pwm, 1);
+		else
+			nidec_h24_Move(0, 0);
+		*/
 	}
 }
 /* USER CODE END 4 */
