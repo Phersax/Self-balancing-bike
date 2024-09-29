@@ -1,7 +1,7 @@
-../Core/Src/pid.c:10:6:pid_init	32	static
-../Core/Src/pid.c:22:6:pid_set_setpoint	16	static
-../Core/Src/pid.c:26:7:pid_compute_control_action	40	static
-../Core/Src/pid.c:78:7:pid_get_error	16	static
-../Core/Src/pid.c:82:7:pid_get_setpoint	16	static
-../Core/Src/pid.c:86:14:pid_get_current_sampling_time	16	static
-../Core/Src/pid.c:90:6:pid_update_ts	16	static
+../Core/Src/pid.c:9:6:pid_init	32	static
+../Core/Src/pid.c:21:6:pid_set_setpoint	16	static
+../Core/Src/pid.c:25:7:pid_compute_control_action	48	static
+../Core/Src/pid.c:73:7:pid_get_error	16	static
+../Core/Src/pid.c:77:7:pid_get_setpoint	16	static
+../Core/Src/pid.c:81:14:pid_get_current_sampling_time	16	static
+../Core/Src/pid.c:85:6:pid_update_ts	16	static

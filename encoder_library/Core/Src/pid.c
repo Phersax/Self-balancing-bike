@@ -4,8 +4,7 @@
 static float pid_get_current_sampling_time(PID_t *p);
 
 float p_action, i_action, d_action, error_debug;
-float u;
-float derivative;
+static float last_u;
 
 void pid_init(PID_t *p, float k_p, float k_i, float k_d, float min_out,
 		float max_out) {
@@ -24,11 +23,7 @@ void pid_set_setpoint(PID_t *p, float set_point) {
 }
 
 float pid_compute_control_action(PID_t *p, float est_output) {
-	float delta_T;
-	float error, integral_error;
-
-	static float last_u;
-
+	float error, integral_error, u, derivative, delta_T;
 	float alpha = 0.9;
 	float k_p = p->k_p;
 
@@ -37,10 +32,10 @@ float pid_compute_control_action(PID_t *p, float est_output) {
 	delta_T = pid_get_current_sampling_time(p);
 
 	if (delta_T > 0.0 && p->k_d != 0.0) {
-	        // Apply the low-pass filter to the derivative
-	        derivative = alpha * p->d_term + (1 - alpha) * (error - p->last_error) / delta_T;
-	    } else {
-	        derivative = 0;
+		// Apply the low-pass filter to the derivative
+		derivative = alpha * p->d_term + (1 - alpha) * (error - p->last_error) / delta_T;
+	} else {
+		derivative = 0;
 	}
 
 	if (error > p->pos_deadzone || error < p->neg_deadzone) {

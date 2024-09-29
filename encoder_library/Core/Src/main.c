@@ -51,21 +51,21 @@
 float rpm;
 encoder_t enc;
 PID_t pid;
-float Kp = 2.45;
-float Ki = 16;
-float Kd = 0.03;
+float Kp = 7;
+float Ki = 2;
+float Kd = 0.06;
 
-float pwm = 10;
+float pwm;
 
 float set_point = 0;
 float max_pwm = 100;
 
 float sigA; //sine
-float amp = 400;
+float amp = 300;
 float factor_freq = 1000;
 
 float sigB; //ramp
-float sigC = 250; //step
+float sigC = 480; //step
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -179,7 +179,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		rpm = encoder_get_velocity_rpm(&enc);
 		sigA = amp * sinf(2 * M_PI * HAL_GetTick() / factor_freq);
 		pid_set_setpoint(&pid, sigA);
-		//pwm = pid_compute_control_action(&pid, rpm);
+		pwm = pid_compute_control_action(&pid, rpm);
 		nidec_h24_Move(pwm, 1);
 	}
 }

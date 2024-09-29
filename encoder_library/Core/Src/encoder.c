@@ -2,10 +2,6 @@
 #include "main.h"
 #include <math.h>
 
-uint32_t cur_cnt;
-int32_t diff, cur_velocity;
-float beta = 0.95;
-
 HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch,
 		TIM_HandleTypeDef *htim, uint32_t ppr) {
 	HAL_StatusTypeDef ret;
@@ -32,6 +28,8 @@ HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch,
 }
 
 inline static void __encoder_update(encoder_t *e) {
+	uint32_t cur_cnt;
+	int32_t diff, cur_velocity;
 
 	cur_cnt = e->tim->Instance->CNT;
 
@@ -45,11 +43,8 @@ inline static void __encoder_update(encoder_t *e) {
 		if (cur_cnt > e->last_count) // overflow
 			diff = e->last_count - cur_cnt;
 		else
-			//(diff = (e->tim->Instance->ARR - e->last_count) + cur_cnt;
-		    diff = (e->tim->Instance->ARR - cur_cnt) + e->last_count;
+			diff = (e->tim->Instance->ARR - e->last_count) + cur_cnt;
 	}
-
-	//__HAL_TIM_GET_COUNTER()
 
 	// velocity in pulses per second
 	if (e->last_count == cur_cnt)
@@ -58,10 +53,7 @@ inline static void __encoder_update(encoder_t *e) {
 	cur_velocity = (float) diff / DT / (float) e->resolution;
 
 	// Filtering velocity
-	e->velocity_pps = beta * e->velocity_pps + (1.0 - beta) * cur_velocity;
-	//e->velocity_pps = cur_velocity;
-
-	//e->tim->Instance->CNT = 0;
+	e->velocity_pps = BETA * e->velocity_pps + (1.0 - BETA) * cur_velocity;
 	e->last_count = cur_cnt;
 }
 
