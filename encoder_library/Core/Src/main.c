@@ -51,23 +51,21 @@
 float rpm;
 encoder_t enc;
 PID_t pid;
-float Kp = 1;
-float Ki = 0;
-float Kd = 0;
+float Kp = 2.45;
+float Ki = 16;
+float Kd = 0.03;
 
-float pwm;
-float brk = 1;
+float pwm = 10;
 
 float set_point = 0;
 float max_pwm = 100;
 
+float sigA; //sine
 float amp = 400;
 float factor_freq = 1000;
 
-float sigA;
-float sigB;
-float sigC = 150;
-float err;
+float sigB; //ramp
+float sigC = 250; //step
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -123,13 +121,6 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1) {
-		// HAL_GetTick() returns the number of milliseconds since the program started
-		/*
-		 sigB++;
-		 if (sigB > 200)
-		 sigB = -200;
-		 */
-
 		HAL_Delay(1);
 		/* USER CODE END WHILE */
 
@@ -188,8 +179,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		rpm = encoder_get_velocity_rpm(&enc);
 		sigA = amp * sinf(2 * M_PI * HAL_GetTick() / factor_freq);
 		pid_set_setpoint(&pid, sigA);
-		pwm = pid_compute_control_action(&pid, rpm, NULL);
-		nidec_h24_Move(pwm, brk);
+		//pwm = pid_compute_control_action(&pid, rpm);
+		nidec_h24_Move(pwm, 1);
 	}
 }
 /* USER CODE END 4 */

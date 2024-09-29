@@ -35,8 +35,6 @@ inline static void __encoder_update(encoder_t *e) {
 
 	cur_cnt = e->tim->Instance->CNT;
 
-	//diff = cur_cnt - e->last_count;
-
 	// Handle overflow and underflow
 	if (__HAL_TIM_IS_TIM_COUNTING_DOWN(e->tim)) {
 		if (cur_cnt < e->last_count) // underflow
@@ -47,7 +45,8 @@ inline static void __encoder_update(encoder_t *e) {
 		if (cur_cnt > e->last_count) // overflow
 			diff = e->last_count - cur_cnt;
 		else
-			diff = (e->tim->Instance->ARR - e->last_count) + cur_cnt;
+			//(diff = (e->tim->Instance->ARR - e->last_count) + cur_cnt;
+		    diff = (e->tim->Instance->ARR - cur_cnt) + e->last_count;
 	}
 
 	//__HAL_TIM_GET_COUNTER()
@@ -62,8 +61,8 @@ inline static void __encoder_update(encoder_t *e) {
 	e->velocity_pps = beta * e->velocity_pps + (1.0 - beta) * cur_velocity;
 	//e->velocity_pps = cur_velocity;
 
-	e->tim->Instance->CNT = 0;
-	e->last_count = 0;
+	//e->tim->Instance->CNT = 0;
+	e->last_count = cur_cnt;
 }
 
 float encoder_get_velocity_rps(encoder_t *e) {

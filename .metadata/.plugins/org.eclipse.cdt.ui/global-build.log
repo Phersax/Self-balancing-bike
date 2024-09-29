@@ -1078,3 +1078,660 @@ arm-none-eabi-size  encoder_library.elf
   20940	     36	   1916	  22892	   596c	encoder_library.elf
 Finished building: default.size.stdout
  
+12:31:27 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:33:52 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:35:10 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+12:35:30 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:36:22 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+12:37:15 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     36	   1916	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:41:23 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:41:51 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+12:42:14 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     40	   1912	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:43:34 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     36	   1916	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:47:02 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:48:08 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:50:13 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/nidec_h24.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/nidec_h24.d" -MT"Core/Src/nidec_h24.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/nidec_h24.o"
+../Core/Src/nidec_h24.c: In function 'nidec_h24_Move':
+../Core/Src/nidec_h24.c:50:47: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+   50 |         TIM5->CCR1 = htim5.Instance->ARR*(1 - abs(dutyCycle)/100);
+      |                                               ^~~
+../Core/Src/nidec_h24.c:7:1: note: include '<stdlib.h>' or provide a declaration of 'abs'
+    6 | #include <math.h>
+  +++ |+#include <stdlib.h>
+    7 | 
+../Core/Src/nidec_h24.c:50:51: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+   50 |         TIM5->CCR1 = htim5.Instance->ARR*(1 - abs(dutyCycle)/100);
+      |                                                   ^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20860	     44	   1908	  22812	   591c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:51:27 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/nidec_h24.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/nidec_h24.d" -MT"Core/Src/nidec_h24.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/nidec_h24.o"
+../Core/Src/nidec_h24.c: In function 'nidec_h24_Move':
+../Core/Src/nidec_h24.c:50:47: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+   50 |         TIM5->CCR1 = htim5.Instance->ARR*(1 - abs(dutyCycle)/100);
+      |                                               ^~~
+../Core/Src/nidec_h24.c:7:1: note: include '<stdlib.h>' or provide a declaration of 'abs'
+    6 | #include <math.h>
+  +++ |+#include <stdlib.h>
+    7 | 
+../Core/Src/nidec_h24.c:50:51: warning: 'abs' argument 1 promotes to 'int32_t' {aka 'long int'} where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+   50 |         TIM5->CCR1 = htim5.Instance->ARR*(1 - abs(dutyCycle)/100);
+      |                                                   ^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20812	     44	   1908	  22764	   58ec	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:53:03 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/nidec_h24.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/nidec_h24.d" -MT"Core/Src/nidec_h24.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/nidec_h24.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:54:32 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/nidec_h24.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/nidec_h24.d" -MT"Core/Src/nidec_h24.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/nidec_h24.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+12:55:36 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1908	  22892	   596c	encoder_library.elf
+Finished building: default.size.stdout
+ 
+13:01:23 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/pid.c: In function 'pid_compute_control_action':
+../Core/Src/pid.c:30:22: warning: variable 'last_u' set but not used [-Wunused-but-set-variable]
+   30 |         static float last_u;
+      |                      ^~~~~~
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20956	     44	   1916	  22916	   5984	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:08:11 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/pid.c: In function 'pid_compute_control_action':
+../Core/Src/pid.c:30:22: warning: variable 'last_u' set but not used [-Wunused-but-set-variable]
+   30 |         static float last_u;
+      |                      ^~~~~~
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:11:00 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+13:15:45 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/pid.c: In function 'pid_compute_control_action':
+../Core/Src/pid.c:31:22: warning: variable 'last_u' set but not used [-Wunused-but-set-variable]
+   31 |         static float last_u;
+      |                      ^~~~~~
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20956	     44	   1916	  22916	   5984	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:15:59 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20956	     44	   1916	  22916	   5984	encoder_library.elf
+Finished building: default.size.stdout
+ 
+13:19:27 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/pid.c: In function 'pid_compute_control_action':
+../Core/Src/pid.c:31:22: warning: variable 'last_u' set but not used [-Wunused-but-set-variable]
+   31 |         static float last_u;
+      |                      ^~~~~~
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:19:41 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+13:20:23 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:20:50 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+13:21:14 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     40	   1920	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:23:40 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:24:37 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:25:23 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     44	   1916	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+13:26:27 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20940	     36	   1924	  22900	   5974	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:36:46 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/pid.c: In function 'pid_compute_control_action':
+../Core/Src/pid.c:30:22: warning: variable 'last_u' set but not used [-Wunused-but-set-variable]
+   30 |         static float last_u;
+      |                      ^~~~~~
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:38:10 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:42:27 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:43:39 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:44:37 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:47:26 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:48:17 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+15:57:24 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20876	     44	   1916	  22836	   5934	encoder_library.elf
+Finished building: default.size.stdout
+ 
+16:04:15 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16424	     36	   1892	  18352	   47b0	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:12:44 **** Cleaning Selected Files of configuration Debug for project encoder_library ****
+Info: Internal Builder is used for build
+Debug/Core/Src/main.o deleted.
+Debug/Core/Src/main.su deleted.
+Debug/Core/Src/main.cyclo deleted.
+16:13:30 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16424	     36	   1892	  18352	   47b0	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:14:02 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16424	     40	   1888	  18352	   47b0	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:20:07 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-size  encoder_library.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16424	     40	   1888	  18352	   47b0	encoder_library.elf
+Finished building: default.size.stdout
+ 
+16:25:03 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16432	     40	   1888	  18360	   47b8	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:27:04 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16424	     40	   1888	  18352	   47b0	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:28:44 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16424	     40	   1888	  18352	   47b0	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:33:08 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  16416	     40	   1888	  18344	   47a8	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 
+16:42:33 **** Incremental Build of configuration Debug for project encoder_library ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder_library.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\encoder_library\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_library.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_library.elf
+ 
+arm-none-eabi-size  encoder_library.elf 
+arm-none-eabi-objdump -h -S encoder_library.elf  > "encoder_library.list"
+   text	   data	    bss	    dec	    hex	filename
+  20160	     44	   1884	  22088	   5648	encoder_library.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder_library.list
+ 

@@ -23,7 +23,7 @@ typedef struct {
 
 void pid_init(PID_t *p, float k_p, float k_i, float k_d, float min_out, float max_out);
 
-float pid_compute_control_action(PID_t *p, float est_output, float *est_out_derivative);
+float pid_compute_control_action(PID_t *p, float est_output);
 void pid_update_ts(PID_t *p);
 
 /* Useful setter functions */
