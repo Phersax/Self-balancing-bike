@@ -60,8 +60,8 @@ all: main-build
 main-build: kalman_filter.elf secondary-outputs
 
 # Tool invocations
-kalman_filter.elf kalman_filter.map: $(OBJS) $(USER_OBJS) C:\Users\simyw\OneDrive\Desktop\Self-balancing-bike\comp_filter\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "kalman_filter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\simyw\OneDrive\Desktop\Self-balancing-bike\comp_filter\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+kalman_filter.elf kalman_filter.map: $(OBJS) $(USER_OBJS) C:\Users\Francesco\ Stasi\OneDrive\ -\ Politecnico\ di\ Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_filter\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "kalman_filter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\kalman_filter\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman_filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

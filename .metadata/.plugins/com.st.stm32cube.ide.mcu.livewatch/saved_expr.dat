@@ -8,5 +8,9 @@ enc
 brk
 pid_in
 pid_ex
-or.pitch
+pitch
 rpm_r
+rpm
+factor_freq
+amp
+pid

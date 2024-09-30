@@ -1,7 +1,7 @@
 #ifndef INC_COMP_FILTER_H_
 #define INC_COMP_FILTER_H_
 
-#define ALPHA 0.98 // complementary filter coefficient
+#define ALPHA 0.8 // complementary filter coefficient
 #define DT  0.005 // sampling time
 
 typedef struct {

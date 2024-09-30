@@ -51,9 +51,9 @@
 float rpm;
 encoder_t enc;
 PID_t pid;
-float Kp = 7;
-float Ki = 2;
-float Kd = 0.06;
+float Kp = 1;
+float Ki = 0;
+float Kd = 0;
 
 float pwm;
 
@@ -61,8 +61,8 @@ float set_point = 0;
 float max_pwm = 100;
 
 float sigA; //sine
-float amp = 300;
-float factor_freq = 1000;
+float amp = 200;
+float factor_freq = 500;
 
 float sigB; //ramp
 float sigC = 480; //step
@@ -180,7 +180,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		sigA = amp * sinf(2 * M_PI * HAL_GetTick() / factor_freq);
 		pid_set_setpoint(&pid, sigA);
 		pwm = pid_compute_control_action(&pid, rpm);
-		nidec_h24_Move(pwm, 1);
+		//nidec_h24_Move(pwm, 1);
 	}
 }
 /* USER CODE END 4 */
