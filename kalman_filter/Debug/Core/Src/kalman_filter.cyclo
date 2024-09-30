@@ -1,0 +1,10 @@
+../Core/Src/kalman_filter.c:5:6:Kalman_init	1
+../Core/Src/kalman_filter.c:21:7:Kalman_getAngle	1
+../Core/Src/kalman_filter.c:64:6:Kalman_setAngle	1
+../Core/Src/kalman_filter.c:66:7:Kalman_getRate	1
+../Core/Src/kalman_filter.c:70:6:Kalman_setQangle	1
+../Core/Src/kalman_filter.c:71:6:Kalman_setQbias	1
+../Core/Src/kalman_filter.c:72:6:Kalman_setRmeasure	1
+../Core/Src/kalman_filter.c:74:7:Kalman_getQangle	1
+../Core/Src/kalman_filter.c:75:7:Kalman_getQbias	1
+../Core/Src/kalman_filter.c:76:7:Kalman_getRmeasure	1

@@ -1,0 +1,9 @@
+../Core/Src/comp_filter.c:15:6:updateOrientation	1
+../Core/Src/comp_filter.c:29:6:updateAnglehAcc	1
+../Core/Src/comp_filter.c:34:6:updateAngleGyro	1
+../Core/Src/comp_filter.c:39:7:getPitchAcc	1
+../Core/Src/comp_filter.c:42:7:getRollAcc	1
+../Core/Src/comp_filter.c:46:7:getPitchGyro	1
+../Core/Src/comp_filter.c:49:7:getRollGyro	1
+../Core/Src/comp_filter.c:53:7:getPitch	1
+../Core/Src/comp_filter.c:56:7:getRoll	1

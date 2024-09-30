@@ -1,6 +1,8 @@
 #ifndef KALMAN_H
 #define KALMAN_H
 
+#define DT 0.005
+
 typedef struct {
     float Q_angle;
     float Q_bias;
@@ -17,7 +19,7 @@ typedef struct {
 void Kalman_init(Kalman* k);
 
 // Get the estimated angle
-float Kalman_getAngle(Kalman* k, float newAngle, float newRate, float dt);
+float Kalman_getAngle(Kalman* k, float newAngle, float newRate);
 
 // Set the initial angle
 void Kalman_setAngle(Kalman* k, float angle);

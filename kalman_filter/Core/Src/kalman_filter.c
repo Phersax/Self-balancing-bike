@@ -1,16 +1,6 @@
-#include "Kalman.h"
+#include "kalman_filter.h"
 
-typedef struct {
-    float Q_angle;
-    float Q_bias;
-    float R_measure;
-
-    float angle;
-    float bias;
-    float rate;
-
-    float P[2][2];
-} Kalman;
+Kalman filter;
 
 void Kalman_init(Kalman* k) {
     /* We will set the variables like so, these can also be tuned by the user */
@@ -27,20 +17,20 @@ void Kalman_init(Kalman* k) {
     k->P[1][1] = 0.0f;
 }
 
-// The angle should be in degrees and the rate should be in degrees per second and the delta time in seconds
-float Kalman_getAngle(Kalman* k, float newAngle, float newRate, float dt) {
+// The angle should be in degrees and the rate should be in degrees per second
+float Kalman_getAngle(Kalman* k, float newAngle, float newRate) {
     // Discrete Kalman filter time update equations - Time Update ("Predict")
     // Update xhat - Project the state ahead
     /* Step 1 */
     k->rate = newRate - k->bias;
-    k->angle += dt * k->rate;
+    k->angle += DT * k->rate;
 
     // Update estimation error covariance - Project the error covariance ahead
     /* Step 2 */
-    k->P[0][0] += dt * (dt * k->P[1][1] - k->P[0][1] - k->P[1][0] + k->Q_angle);
-    k->P[0][1] -= dt * k->P[1][1];
-    k->P[1][0] -= dt * k->P[1][1];
-    k->P[1][1] += k->Q_bias * dt;
+    k->P[0][0] += DT * (DT * k->P[1][1] - k->P[0][1] - k->P[1][0] + k->Q_angle);
+    k->P[0][1] -= DT * k->P[1][1];
+    k->P[1][0] -= DT * k->P[1][1];
+    k->P[1][1] += k->Q_bias * DT;
 
     // Discrete Kalman filter measurement update equations - Measurement Update ("Correct")
     // Calculate Kalman gain - Compute the Kalman gain
@@ -71,8 +61,10 @@ float Kalman_getAngle(Kalman* k, float newAngle, float newRate, float dt) {
     return k->angle;
 }
 
-void Kalman_setAngle(Kalman* k, float angle) { k->angle = angle; } // Used to set angle, this should be set as the starting angle
-float Kalman_getRate(Kalman* k) { return k->rate; } // Return the unbiased rate
+void Kalman_setAngle(Kalman* k, float angle) { k->angle = angle; }
+// Used to set angle, this should be set as the starting angle
+float Kalman_getRate(Kalman* k) { return k->rate; }
+// Return the unbiased rate
 
 /* These are used to tune the Kalman filter */
 void Kalman_setQangle(Kalman* k, float Q_angle) { k->Q_angle = Q_angle; }
