@@ -26,7 +26,7 @@ void updateOrientation(float accX, float accY, float accZ, float gyroX, float gy
   or.roll = ALPHA * (or.roll + A_acc.rollAcc) + (1 - ALPHA) * A_acc.rollAcc;
 }
 
-void updateAnglehAcc(float accX, float accY, float accZ){
+void updateAngleAcc(float accX, float accY, float accZ){
 	A_acc.pitchAcc = atan(accX / sqrt(accY*accY + accZ*accZ)) * 180 / M_PI - pitchBias;
 	A_acc.rollAcc = atan(-accY / sqrt(accX*accX + accZ*accZ)) * 180 / M_PI;
 }

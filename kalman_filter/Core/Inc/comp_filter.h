@@ -30,7 +30,7 @@ typedef struct {
 void updateOrientation(float accX, float accY, float accZ, float gyroX, float gyroY, float gyroZ);
 
 /*Compute angles with accelerometer*/
-void updateAnglehAcc(float accX, float accY, float accZ);
+void updateAngleAcc(float accX, float accY, float accZ);
 
 /*Compute angles with gyroscope filter*/
 void updateAngleGyro(float gyroX, float gyroY);
