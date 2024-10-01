@@ -68,3 +68,593 @@ Finished building: default.size.stdout
  
 Finished building: main_test.list
  
+16:17:48 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26120	    144	   2512	  28776	   7068	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+16:23:31 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/pid.c: In function 'pid_reset':
+../Core/Src/pid.c:91:9: error: 'p' undeclared (first use in this function)
+   91 |         p->integral_error = 0;
+      |         ^
+../Core/Src/pid.c:91:9: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:61: Core/Src/pid.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+16:24:32 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26200	    144	   2512	  28856	   70b8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+16:24:49 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26200	    144	   2512	  28856	   70b8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:04:19 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:254:9: error: expected declaration or statement at end of input
+  254 |         }
+      |         ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:247:14: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  247 |         void Error_Handler(void) {
+      |              ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:61: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+17:04:50 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:254:1: error: expected declaration or statement at end of input
+  254 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:247:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  247 | void Error_Handler(void) {
+      |      ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:61: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+17:05:16 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:254:1: error: expected declaration or statement at end of input
+  254 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:247:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  247 | void Error_Handler(void) {
+      |      ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:61: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+17:06:34 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26216	    144	   2512	  28872	   70c8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+17:17:30 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+17:18:26 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:18:37 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:18:59 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:19:06 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:19:25 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:19:52 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:20:30 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26184	    144	   2512	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:30:15 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26192	    144	   2512	  28848	   70b0	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+17:34:13 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26192	    144	   2504	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+17:35:05 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26192	    144	   2504	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:37:58 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26192	    144	   2504	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:39:04 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26192	    144	   2504	  28840	   70a8	main_test.elf
+Finished building: default.size.stdout
+ 
+17:48:02 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26224	    144	   2504	  28872	   70c8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+17:55:49 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26224	    144	   2504	  28872	   70c8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:05:00 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26344	    144	   2504	  28992	   7140	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:06:09 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26344	    144	   2504	  28992	   7140	main_test.elf
+Finished building: default.size.stdout
+ 
+18:07:59 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26344	    144	   2504	  28992	   7140	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:11:54 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26344	    152	   2504	  29000	   7148	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:17:39 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26344	    152	   2504	  29000	   7148	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:18:11 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26344	    152	   2504	  29000	   7148	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:20:49 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26344	    152	   2504	  29000	   7148	main_test.elf
+Finished building: default.size.stdout
+ 
+18:23:16 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/pid.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pid.d" -MT"Core/Src/pid.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pid.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:225:35: error: incompatible type for argument 1 of 'pid_reset'
+  225 |                         pid_reset(pid_in);
+      |                                   ^~~~~~
+      |                                   |
+      |                                   PID_t
+In file included from ../Core/Src/main.c:33:
+../Core/Inc/pid.h:35:23: note: expected 'PID_t *' but argument is of type 'PID_t'
+   35 | void pid_reset(PID_t *p);
+      |                ~~~~~~~^
+../Core/Src/main.c:226:35: error: incompatible type for argument 1 of 'pid_reset'
+  226 |                         pid_reset(pid_ex);
+      |                                   ^~~~~~
+      |                                   |
+      |                                   PID_t
+../Core/Inc/pid.h:35:23: note: expected 'PID_t *' but argument is of type 'PID_t'
+   35 | void pid_reset(PID_t *p);
+      |                ~~~~~~~^
+make: *** [Core/Src/subdir.mk:61: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+18:24:01 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26288	    152	   2504	  28944	   7110	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:24:35 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26288	    152	   2504	  28944	   7110	main_test.elf
+Finished building: default.size.stdout
+ 
+18:28:01 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26272	    152	   2504	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:28:28 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:31:34 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:38:36 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:49:52 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26280	    144	   2512	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+18:54:34 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26280	    144	   2512	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+18:55:03 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26280	    152	   2504	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+19:02:27 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26264	    152	   2504	  28920	   70f8	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+20:17:39 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26280	    152	   2504	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+20:19:33 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26280	    144	   2512	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+20:36:48 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26280	    144	   2512	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+20:39:00 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26280	    144	   2512	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+20:43:51 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26280	    144	   2512	  28936	   7108	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+21:26:12 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc -o "main_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Francesco Stasi\OneDrive - Politecnico di Bari\UNI_Embedded_Control\Self-balancing-bike\main_test\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="main_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: main_test.elf
+ 
+arm-none-eabi-size  main_test.elf 
+arm-none-eabi-objdump -h -S main_test.elf  > "main_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: main_test.list
+ 
+21:26:20 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+21:26:40 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+21:26:51 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+21:27:19 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 
+21:32:49 **** Incremental Build of configuration Debug for project main_test ****
+make -j12 all 
+arm-none-eabi-size  main_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26272	    144	   2512	  28928	   7100	main_test.elf
+Finished building: default.size.stdout
+ 

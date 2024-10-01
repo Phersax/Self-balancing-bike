@@ -32,5 +32,6 @@ void pid_set_setpoint(PID_t *p, float set_point);
 /* Useful getter functions */
 float pid_get_setpoint(PID_t *p);
 float pid_get_error(PID_t *p);
+void pid_reset(PID_t *p);
 
 #endif

@@ -33,7 +33,8 @@ float pid_compute_control_action(PID_t *p, float est_output) {
 
 	if (delta_T > 0.0 && p->k_d != 0.0) {
 		// Apply the low-pass filter to the derivative
-		derivative = alpha * p->d_term + (1 - alpha) * (error - p->last_error) / delta_T;
+		derivative = alpha * p->d_term
+				+ (1 - alpha) * (error - p->last_error) / delta_T;
 	} else {
 		derivative = 0;
 	}
@@ -84,4 +85,13 @@ static float pid_get_current_sampling_time(PID_t *p) {
 
 void pid_update_ts(PID_t *p) {
 	p->last_updated_ts = HAL_GetTick();
+}
+
+void pid_reset(PID_t *p) {
+	p->integral_error = 0;
+	p->last_error = 0;
+	p->last_updated_ts = 0;
+	p->p_term = 0;
+	p->i_term = 0;
+	p->d_term = 0;
 }
