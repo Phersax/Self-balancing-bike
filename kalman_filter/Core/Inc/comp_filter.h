@@ -1,10 +1,3 @@
-/*
- * kalman_fns.h
- *
- *  Created on: Sep 9, 2024
- *      Author: Forza napoli
- */
-
 #ifndef INC_KALMAN_FNS_H_
 #define INC_KALMAN_FNS_H_
 
