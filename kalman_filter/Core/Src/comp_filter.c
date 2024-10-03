@@ -1,9 +1,3 @@
-/*
- * kalman_fns.c
- *
- *  Created on: Sep 9, 2024
- *      Author: dannato Francesco Stasi
- */
 #include <comp_filter.h>
 #include <math.h>
 
@@ -16,7 +10,7 @@ void updateOrientation(float accX, float accY, float accZ, float gyroX, float gy
 {
 
   // compute pitch and roll from accelerometer
-  updateAnglehAcc(accX, accY,accZ);
+  updateAngleAcc(accX, accY,accZ);
 
   // compute pitch and roll from gyroscope
   updateAngleGyro(gyroX, gyroY);
