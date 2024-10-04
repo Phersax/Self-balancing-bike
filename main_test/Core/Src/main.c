@@ -64,7 +64,7 @@ encoder_t enc;
 
 //controllers
 PID_t pid_in;
-float Kp_in = 150;
+float Kp_in = 8;
 float Ki_in = 1.4;
 float Kd_in = 0.9;
 
@@ -84,6 +84,8 @@ float max_angle = 10;
 float max_rpm = 500;
 float max_pwm = 100;
 int vertical;
+
+float yyy;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -217,7 +219,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		data = mpu6050_data();
 		new_angle = atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
 				* 180 / M_PI;
-		pitch = Kalman_getAngle(&filter, new_angle, data.gx);
+		pitch = Kalman_getAngle(&filter, new_angle, data.gy);
+		yyy = data.gy * 0.025;
 
 		if (fabs(pitch - set_point_angle) < max_angle) {
 			rpm_r = pid_compute_control_action(&pid_ex, pitch);
@@ -238,7 +241,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 		if (vertical) {
 			pwm = pid_compute_control_action(&pid_in, rpm_y);
-			nidec_h24_Move(pwm, 1);
+			//nidec_h24_Move(pwm, 1);
 		}
 	}
 }

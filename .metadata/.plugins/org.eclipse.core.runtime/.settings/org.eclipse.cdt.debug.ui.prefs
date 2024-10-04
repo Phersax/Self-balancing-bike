@@ -3,5 +3,6 @@ columnOrderKeySF=0,1,2,3,4,5
 columnSortDirectionKeyEXE=128
 columnSortDirectionKeySF=128
 eclipse.preferences.version=1
+org.eclipse.debug.ui.DebugView.org.eclipse.cdt.debug.ui.cDebug.show_full_paths=true
 visibleColumnsKeyEXE=1,1,1,0,0,0
 visibleColumnsKeySF=1,1,0,0,0,0

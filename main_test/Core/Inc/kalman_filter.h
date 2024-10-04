@@ -1,7 +1,7 @@
 #ifndef KALMAN_H
 #define KALMAN_H
 
-#define DT 0.005
+#define DT 0.025
 
 typedef struct {
     float Q_angle;

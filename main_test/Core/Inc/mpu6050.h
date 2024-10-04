@@ -47,7 +47,7 @@
 #define GYRO_SCALE_100         65.5
 #define GYRO_SCALE_1000        32.8
 #define GYRO_SCALE_2000        16.4
-#define GYRO_SCALE             GYRO_SCALE_1000
+#define GYRO_SCALE             GYRO_SCALE_250
 
 extern short gx_bias;
 extern short gy_bias;
