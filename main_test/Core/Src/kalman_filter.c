@@ -23,14 +23,14 @@ float Kalman_getAngle(Kalman* k, float newAngle, float newRate) {
     // Update xhat - Project the state ahead
     /* Step 1 */
     k->rate = newRate - k->bias;
-    k->angle += DT * k->rate;
+    k->angle += DT_k * k->rate;
 
     // Update estimation error covariance - Project the error covariance ahead
     /* Step 2 */
-    k->P[0][0] += DT * (DT * k->P[1][1] - k->P[0][1] - k->P[1][0] + k->Q_angle);
-    k->P[0][1] -= DT * k->P[1][1];
-    k->P[1][0] -= DT * k->P[1][1];
-    k->P[1][1] += k->Q_bias * DT;
+    k->P[0][0] += DT_k * (DT_k * k->P[1][1] - k->P[0][1] - k->P[1][0] + k->Q_angle);
+    k->P[0][1] -= DT_k * k->P[1][1];
+    k->P[1][0] -= DT_k * k->P[1][1];
+    k->P[1][1] += k->Q_bias * DT_k;
 
     // Discrete Kalman filter measurement update equations - Measurement Update ("Correct")
     // Calculate Kalman gain - Compute the Kalman gain

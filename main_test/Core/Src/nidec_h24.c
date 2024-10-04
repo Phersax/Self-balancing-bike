@@ -39,6 +39,7 @@ void nidec_h24_init(){
 	TIM5->CCR1 = 0;
     HAL_TIM_Base_Start(&htim5);
 	HAL_TIM_PWM_Start(&htim5, CHANNEL);
+	nidec_h24_Move(0, 0);
 }
 
 /* To make the motor turn based on the input */

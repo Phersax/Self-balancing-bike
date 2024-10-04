@@ -44,14 +44,17 @@
 
 /* Gyroscope Scaling */
 #define GYRO_SCALE_250         131
-#define GYRO_SCALE_100         65.5
+#define GYRO_SCALE_500         65.5
 #define GYRO_SCALE_1000        32.8
 #define GYRO_SCALE_2000        16.4
-#define GYRO_SCALE             GYRO_SCALE_250
+#define GYRO_SCALE             GYRO_SCALE_500
 
-extern short gx_bias;
-extern short gy_bias;
-extern short gz_bias;
+extern float gx_bias;
+extern float gy_bias;
+extern float gz_bias;
+extern float ax_bias;
+extern float ay_bias;
+extern float az_bias;
 
 typedef struct {
     float data;

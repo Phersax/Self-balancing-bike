@@ -180,7 +180,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		sigA = amp * sinf(2 * M_PI * HAL_GetTick() / factor_freq);
 		pid_set_setpoint(&pid, sigA);
 		pwm = pid_compute_control_action(&pid, rpm);
-		//nidec_h24_Move(pwm, 1);
+		nidec_h24_Move(pwm, 1);
 	}
 }
 /* USER CODE END 4 */

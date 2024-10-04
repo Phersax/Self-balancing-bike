@@ -50,7 +50,7 @@ inline static void __encoder_update(encoder_t *e) {
 	if (e->last_count == cur_cnt)
 		diff = 0;
 
-	cur_velocity = (float) diff / DT / (float) e->resolution;
+	cur_velocity = (float) diff / DT_enc / (float) e->resolution;
 
 	// Filtering velocity
 	e->velocity_pps = BETA * e->velocity_pps + (1.0 - BETA) * cur_velocity;

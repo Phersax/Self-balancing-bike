@@ -64,13 +64,13 @@ encoder_t enc;
 
 //controllers
 PID_t pid_in;
-float Kp_in = 8;
-float Ki_in = 1.4;
-float Kd_in = 0.9;
+float Kp_in = 16;
+float Ki_in = 0.8;
+float Kd_in = 0.6;
 
 PID_t pid_ex;
-float Kp_ex = 35;
-float Ki_ex = 2;
+float Kp_ex = 1;
+float Ki_ex = 0;
 float Kd_ex = 0;
 
 //control variables
@@ -78,14 +78,13 @@ float pwm;
 float rpm_y;
 float rpm_r;
 
-float set_point_angle = 1.3;
+float set_point_angle = -1.3;
 //float min_angle = 1.5;
 float max_angle = 10;
-float max_rpm = 500;
+float max_rpm = 300;
 float max_pwm = 100;
 int vertical;
 
-float yyy;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -137,15 +136,17 @@ int main(void)
 	pid_init(&pid_in, Kp_in, Ki_in, Kd_in, -max_pwm, max_pwm);
 	pid_init(&pid_ex, Kp_ex, Ki_ex, Kd_ex, -max_rpm, max_rpm);
 
+	/*
 	pid_ex.neg_deadzone = set_point_angle - 0.4;
 	pid_ex.pos_deadzone = set_point_angle + 0.4;
 	pid_ex.neg_deadzone = -10;
 	pid_ex.pos_deadzone = 10;
+	*/
 
 	pid_set_setpoint(&pid_ex, set_point_angle);
 	status = mpu6050_init();
 
-	//kalman filter
+	// Kalman filter
 	Kalman_init(&filter);
 	Kalman_setAngle(&filter, 0);
 
@@ -217,10 +218,9 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM3) {
 		data = mpu6050_data();
-		new_angle = atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
+		new_angle = atan(-data.ax / sqrt(data.ay * data.ay + data.az * data.az))
 				* 180 / M_PI;
-		pitch = Kalman_getAngle(&filter, new_angle, data.gy);
-		yyy = data.gy * 0.025;
+		pitch = -Kalman_getAngle(&filter, new_angle, data.gy);
 
 		if (fabs(pitch - set_point_angle) < max_angle) {
 			rpm_r = pid_compute_control_action(&pid_ex, pitch);
@@ -230,18 +230,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			pid_reset(&pid_in);
 			pid_reset(&pid_ex);
 			vertical = 0;
-			pwm = 0;
+			//pwm = 0;
 			rpm_r = 0;
 		}
 
 	}
 	if (htim->Instance == TIM2) {
 		rpm_y = encoder_get_velocity_rpm(&enc);
-		pid_set_setpoint(&pid_in, rpm_r);
 
 		if (vertical) {
+			pid_set_setpoint(&pid_in, rpm_r);
 			pwm = pid_compute_control_action(&pid_in, rpm_y);
-			//nidec_h24_Move(pwm, 1);
+			nidec_h24_Move(pwm, 1);
 		}
 	}
 }
