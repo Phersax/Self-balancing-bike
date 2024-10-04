@@ -26,7 +26,7 @@ void updateAngleAcc(float accX, float accY, float accZ){
 
 void updateAngleGyro(float gyroX, float gyroY){
 	// compute pitch and roll by multiplying the sampling time by the angular velocity
-	A_gyro.pitchGyro = gyroX * DT;
+	A_gyro.rollGyro = gyroX * DT;
 	A_gyro.pitchGyro = gyroY * DT;
 }
 
