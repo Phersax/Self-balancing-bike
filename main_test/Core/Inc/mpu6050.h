@@ -35,12 +35,10 @@
 
 /* Accelerometer Scaling */
 #define ACC_SCALE_2G			16384.0
-#define ACC_SCALE_2G_Z          14418.0
 #define ACC_SCALE_4G			8192
 #define ACC_SCALE_8G			4096
 #define ACC_SCALE_16G			2048
 #define ACC_SCALE               ACC_SCALE_2G
-#define ACC_SCALE_Z             ACC_SCALE_2G_Z
 
 /* Gyroscope Scaling */
 #define GYRO_SCALE_250         131
@@ -49,12 +47,12 @@
 #define GYRO_SCALE_2000        16.4
 #define GYRO_SCALE             GYRO_SCALE_500
 
-extern float gx_bias;
-extern float gy_bias;
-extern float gz_bias;
 extern float ax_bias;
 extern float ay_bias;
 extern float az_bias;
+extern float gx_bias;
+extern float gy_bias;
+extern float gz_bias;
 
 typedef struct {
     float data;
@@ -75,6 +73,9 @@ HAL_StatusTypeDef mpu6050_init();
 
 /*Gyroscope bias calculate*/
 void calculate_gyroscope_bias();
+
+/*Accelerometer bias calculate*/
+void calculate_accelerometer_bias();
 
 /* Accelerometer reading MPU6050 */
 result mpu6050_accx();

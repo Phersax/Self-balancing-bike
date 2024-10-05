@@ -5,12 +5,12 @@
 
 extern I2C_HandleTypeDef hi2c1;
 
+float ax_bias = 0;
+float ay_bias = 0;
+float az_bias = 0;
 float gx_bias = 0;
-float gy_bias = 1.5;
-float gz_bias = 1;
-float ax_bias = 5;
-float ay_bias = 6;
-float az_bias = 16378.5 - 16384;
+float gy_bias = 0;
+float gz_bias = 0;
 
 /*mpu6050 initialization*/
 HAL_StatusTypeDef mpu6050_init(){
@@ -37,6 +37,7 @@ HAL_StatusTypeDef mpu6050_init(){
 			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
 
 			calculate_gyroscope_bias();
+			calculate_accelerometer_bias();
 		}
 		return status;
 }
@@ -44,7 +45,7 @@ HAL_StatusTypeDef mpu6050_init(){
 /*Gyroscope bias calculate*/
 void calculate_gyroscope_bias() {
 	// Number of samples to average
-    int num_samples = 1000;
+    int num_samples = 2000;
     long gx_sum = 0;
     long gy_sum = 0;
     long gz_sum = 0;
@@ -52,14 +53,37 @@ void calculate_gyroscope_bias() {
     for (int i = 0; i < num_samples; i++) {
     	uint8_t buffer[14];
     	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
-    	gx_sum += buffer[8] << 8  | buffer[9];
-    	gy_sum += buffer[10] << 8  | buffer[11];
-    	gz_sum += buffer[12] << 8  | buffer[13];
+    	gx_sum += (int16_t) (buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
+    	gy_sum += (int16_t) (buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
+    	gz_sum += (int16_t) (buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
+    	HAL_Delay(1);
     }
 
     gx_bias = gx_sum / num_samples;
     gy_bias = gy_sum / num_samples;
     gz_bias = gz_sum / num_samples;
+}
+
+/*Accelerometer bias calculate*/
+void calculate_accelerometer_bias() {
+	// Number of samples to average
+    int num_samples = 2000;
+    long ax_sum = 0;
+    long ay_sum = 0;
+    long az_sum = 0;
+
+    for (int i = 0; i < num_samples; i++) {
+    	uint8_t buffer[14];
+    	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
+    	ax_sum += (int16_t) (buffer[0] << 8 | buffer[1]) / ACC_SCALE;
+    	ay_sum += (int16_t) (buffer[2] << 8 | buffer[3]) / ACC_SCALE;
+    	az_sum += (int16_t) (buffer[4] << 8 | buffer[5]) / ACC_SCALE;
+    	HAL_Delay(1);
+    }
+
+    ax_bias = ax_sum / num_samples;
+    ay_bias = ay_sum / num_samples;
+    az_bias = az_sum / num_samples;
 }
 
 /* Accelerometer reading MPU6050 */
@@ -100,7 +124,7 @@ result mpu6050_gyrox(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[8] << 8  | buffer[9];
 	res.status = status;
-	res.data = (imu_data - gx_bias)/ GYRO_SCALE;
+	res.data = imu_data / GYRO_SCALE;
 	return res;
 }
 
@@ -110,7 +134,7 @@ result mpu6050_gyroy(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[10] << 8  | buffer[11];
 	res.status = status;
-    res.data = (imu_data - gy_bias) / GYRO_SCALE;
+    res.data = imu_data / GYRO_SCALE;
 	return res;
 }
 
@@ -120,7 +144,7 @@ result mpu6050_gyroz(){
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	float imu_data = buffer[12] << 8  | buffer[13];
 	res.status = status;
-	res.data = (imu_data - gz_bias) / GYRO_SCALE;
+	res.data = imu_data / GYRO_SCALE;
 	return res;
 }
 
@@ -129,12 +153,12 @@ mpu_data mpu6050_data() {
 	uint8_t buffer[14];
 	 HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	 mpu_data data;
-	 data.ax = (int16_t)((buffer[0] << 8 | buffer[1]) - ax_bias) / ACC_SCALE;
-	 data.ay = (int16_t)((buffer[2] << 8 | buffer[3]) - ay_bias) / ACC_SCALE;
-	 data.az = (int16_t)((buffer[4] << 8 | buffer[5]) - az_bias) / ACC_SCALE;
-	 data.gx = (int16_t)((buffer[8] << 8 | buffer[9]) - gx_bias) / GYRO_SCALE;
-	 data.gy = (int16_t)((buffer[10] << 8 | buffer[11]) - gy_bias) / GYRO_SCALE;
-	 data.gz = (int16_t)((buffer[12] << 8 | buffer[13]) - gz_bias) / GYRO_SCALE;
+	 data.ax = (int16_t) (buffer[0] << 8 | buffer[1]) / ACC_SCALE - ax_bias;
+	 data.ay = (int16_t) (buffer[2] << 8 | buffer[3]) / ACC_SCALE - ay_bias;
+	 data.az = (int16_t) (buffer[4] << 8 | buffer[5]) / ACC_SCALE - az_bias;
+	 data.gx = (int16_t) (buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
+	 data.gy = (int16_t) (buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
+	 data.gz = (int16_t) (buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
 	 return data;
 }
 

@@ -39,10 +39,11 @@ float pid_compute_control_action(PID_t *p, float est_output) {
 		derivative = 0;
 	}
 
-	if (error > p->pos_deadzone || error < p->neg_deadzone) {
+	if (p->neg_deadzone < error && error < p->pos_deadzone) {
 		integral_error = p->integral_error + delta_T * error;
 	} else {
-		integral_error = p->integral_error;
+		p->integral_error = 0;
+		integral_error = 0;
 	}
 
 	u = k_p * error + p->k_i * integral_error + p->k_d * derivative;
