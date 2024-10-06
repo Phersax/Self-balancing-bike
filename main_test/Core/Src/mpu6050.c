@@ -28,12 +28,12 @@ HAL_StatusTypeDef mpu6050_init(){
 
 			/*  Set accelerometer configuration in ACCEL_CONFIG Register */
 			/* XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=0 ->  2g */
-			data = FS_ACC_2G;
+			data = 0x08; //
 			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, ACCEL_CONFIG_REG, 1, &data, 1, 100);
 
 			/* Set Gyroscope configuration in GYRO_CONFIG Register */
 			/* XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 ->  250 deg/s */
-			data = FS_GYRO_500;
+			data = 0x10; //
 			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
 
 			calculate_gyroscope_bias();
@@ -153,12 +153,12 @@ mpu_data mpu6050_data() {
 	uint8_t buffer[14];
 	 HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
 	 mpu_data data;
-	 data.ax = (int16_t) (buffer[0] << 8 | buffer[1]) / ACC_SCALE - ax_bias;
-	 data.ay = (int16_t) (buffer[2] << 8 | buffer[3]) / ACC_SCALE - ay_bias;
-	 data.az = (int16_t) (buffer[4] << 8 | buffer[5]) / ACC_SCALE - az_bias;
-	 data.gx = (int16_t) (buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
-	 data.gy = (int16_t) (buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
-	 data.gz = (int16_t) (buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
+	 data.ax = (float)(buffer[0] << 8 | buffer[1]) / ACC_SCALE;
+	 data.ay = (float)(buffer[2] << 8 | buffer[3]) / ACC_SCALE;
+	 data.az = (float)(buffer[4] << 8 | buffer[5]) / ACC_SCALE;
+	 data.gx = (float)(buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
+	 data.gy = (float)(buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
+	 data.gz = (float)(buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
 	 return data;
 }
 

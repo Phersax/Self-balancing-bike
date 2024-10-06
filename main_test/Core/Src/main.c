@@ -70,6 +70,7 @@ float Kd = 0.04;
 
 //control variables
 float pwm;
+float weight_balance = 5;
 
 float set_point = 0;
 float max_pwm = 100;
@@ -193,17 +194,21 @@ void SystemClock_Config(void) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
 		data = mpu6050_data();
-		new_angle = atan(-data.ax / sqrt(data.ay * data.ay + data.az * data.az))
+		new_angle = atan2(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
 				* 180 / M_PI;
 		pitch = -Kalman_getAngle(&filter, new_angle, data.gy - gy_bias);
+
 		distance = -10 * pitch;
 		distance_error = distance_setpoint - distance;
+
 		if (distance_error < distance_setpoint) {
-			distance_setpoint -= 5 * 0.004;
+			distance_setpoint -= weight_balance * 0.004;
 		} else {
-			distance_setpoint += 5 * 0.004;
+			distance_setpoint += weight_balance * 0.004;
 		}
+
 		rpm = encoder_get_velocity_rpm(&enc);
+
 		if (pwm < 0) {
 			if (rpm > 700) {
 				distance_setpoint -= 0.07;
@@ -214,6 +219,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 				distance_setpoint += 0.07;
 			}
 		}
+
 		pid_set_setpoint(&pid, distance_setpoint);
 		if (pitch < -30 || pitch > 30) {
 			pwm = 0;

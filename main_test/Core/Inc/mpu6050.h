@@ -17,15 +17,15 @@
 
 /* Gyroscope Full-Scale Range */
 #define FS_GYRO_250         0
-#define FS_GYRO_500         8
+#define FS_GYRO_500         0x08
 #define FS_GYRO_1000        9
 #define FS_GYRO_2000        10
 
 /* Accelerometer Full-Scale Range */
 #define FS_ACC_2G         0
 #define FS_ACC_4G         8
-#define FS_ACC_8G         9
-#define FS_ACC_16G        10
+#define FS_ACC_8G         0x10
+#define FS_ACC_16G        24
 
 /* Default value of the WHO_AM_I register */
 #define WHO_AM_I_VAL		0x68
@@ -38,7 +38,7 @@
 #define ACC_SCALE_4G			8192
 #define ACC_SCALE_8G			4096
 #define ACC_SCALE_16G			2048
-#define ACC_SCALE               ACC_SCALE_2G
+#define ACC_SCALE               ACC_SCALE_8G
 
 /* Gyroscope Scaling */
 #define GYRO_SCALE_250         131
