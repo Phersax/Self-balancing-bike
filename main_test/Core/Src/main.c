@@ -58,7 +58,7 @@ float rpm;
 
 //IMU
 extern Kalman filter;
-float pitch, distance, distance_error, distance_setpoint, new_angle;
+float pitch, distance, distance_error, distance_setpoint, new_angle, pid_out;
 mpu_data data;
 HAL_StatusTypeDef status;
 
@@ -70,10 +70,12 @@ float Kd = 0.04;
 
 //control variables
 float pwm;
+float rpm_limit = 0.03;
 float weight_balance = 5;
 
 float set_point = 0;
-float max_pwm = 100;
+float max_pid = 450;
+float max_pwm = 95;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,7 +122,7 @@ int main(void) {
 	MX_TIM1_Init();
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
-	pid_init(&pid, Kp, Ki, Kd, -max_pwm, max_pwm);
+	pid_init(&pid, Kp, Ki, Kd, -max_pid, max_pid);
 	pid.pos_deadzone = 150;
 	pid.neg_deadzone = -150;
 	pid_set_setpoint(&pid, set_point);
@@ -194,7 +196,7 @@ void SystemClock_Config(void) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
 		data = mpu6050_data();
-		new_angle = atan2(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
+		new_angle = atan2(data.ax, sqrt(data.ay * data.ay + data.az * data.az))
 				* 180 / M_PI;
 		pitch = -Kalman_getAngle(&filter, new_angle, data.gy - gy_bias);
 
@@ -209,23 +211,27 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 		rpm = encoder_get_velocity_rpm(&enc);
 
-		if (pwm < 0) {
+		if (pid_out < 0) {
 			if (rpm > 700) {
-				distance_setpoint -= 0.07;
+				distance_setpoint -= rpm_limit;
 			}
 		}
-		if (pwm > 0) {
+		if (pid_out > 0) {
 			if (rpm > 700) {
-				distance_setpoint += 0.07;
+				distance_setpoint += rpm_limit;
 			}
 		}
+
+
 
 		pid_set_setpoint(&pid, distance_setpoint);
 		if (pitch < -30 || pitch > 30) {
 			pwm = 0;
+			distance_setpoint = 0;
 			nidec_h24_Move(pwm, 0);
 		} else {
-			pwm = pid_compute_control_action(&pid, distance);
+			pid_out = pid_compute_control_action(&pid, distance);
+			pwm = max_pwm * pid_out / max_pid;
 			nidec_h24_Move(pwm, 1);
 		}
 	}

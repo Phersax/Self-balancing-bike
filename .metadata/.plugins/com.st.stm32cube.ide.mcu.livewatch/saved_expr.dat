@@ -6,7 +6,6 @@ brk
 pid_in
 pid_ex
 pitch
-rpm_r
-rpm_y
+rpm
 vertical
 data
