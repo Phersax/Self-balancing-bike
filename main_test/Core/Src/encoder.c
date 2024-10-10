@@ -66,6 +66,7 @@ float encoder_get_velocity_rpm(encoder_t *e) {
 	return encoder_get_velocity_rps(e) * 60.0;
 }
 
-float encoder_get_velocity_rads(encoder_t *e) {
-	return encoder_get_velocity_rps(e) / (2.0 * M_PI);
+float encoder_get_pps(encoder_t *e) {
+	__encoder_update(e);
+	return e->velocity_pps;
 }

@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-#define BETA 0.95
+#define BETA 0 //0.95
 #define DT_enc 0.004
 
 typedef enum {
@@ -25,5 +25,6 @@ HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch, TIM_HandleTypeDef *htim
 float encoder_get_velocity_rps(encoder_t *encoder);
 float encoder_get_velocity_rpm(encoder_t *encoder);
 float encoder_get_velocity_rads(encoder_t *encoder);
+float encoder_get_pps(encoder_t *encoder);
 
 #endif

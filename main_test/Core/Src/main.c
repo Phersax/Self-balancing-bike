@@ -209,7 +209,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			distance_setpoint += weight_balance * 0.004;
 		}
 
-		rpm = encoder_get_velocity_rpm(&enc);
+		rpm = fabs(encoder_get_pps(&enc)); 
+
 
 		if (pid_out < 0) {
 			if (rpm > 700) {
@@ -226,12 +227,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 		pid_set_setpoint(&pid, distance_setpoint);
 		if (pitch < -30 || pitch > 30) {
-			pwm = 0;
+			//pwm = 0;
 			distance_setpoint = 0;
 			nidec_h24_Move(pwm, 0);
 		} else {
 			pid_out = pid_compute_control_action(&pid, distance);
-			pwm = max_pwm * pid_out / max_pid;
+			//pwm = max_pwm * pid_out / max_pid;
 			nidec_h24_Move(pwm, 1);
 		}
 	}

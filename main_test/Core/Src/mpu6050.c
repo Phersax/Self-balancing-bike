@@ -12,8 +12,6 @@ float gx_bias = 0;
 float gy_bias = 0;
 float gz_bias = 0;
 
-float acc_s = 4096;
-float gyro_s = 65.5;
 
 /*mpu6050 initialization*/
 HAL_StatusTypeDef mpu6050_init(){
@@ -40,7 +38,7 @@ HAL_StatusTypeDef mpu6050_init(){
 			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
 
 			calculate_gyroscope_bias();
-			calculate_accelerometer_bias();
+			//calculate_accelerometer_bias();
 		}
 		return status;
 }
@@ -49,16 +47,16 @@ HAL_StatusTypeDef mpu6050_init(){
 void calculate_gyroscope_bias() {
 	// Number of samples to average
     int num_samples = 2000;
-    long gx_sum = 0;
-    long gy_sum = 0;
-    long gz_sum = 0;
+    float gx_sum = 0;
+    float gy_sum = 0;
+    float gz_sum = 0;
 
     for (int i = 0; i < num_samples; i++) {
     	uint8_t buffer[14];
     	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
-    	gx_sum += (int16_t) (buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
-    	gy_sum += (int16_t) (buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
-    	gz_sum += (int16_t) (buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
+    	gx_sum += (float)(int16_t) (buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
+    	gy_sum += (float)(int16_t) (buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
+    	gz_sum += (float)(int16_t) (buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
     	HAL_Delay(1);
     }
 
@@ -71,16 +69,16 @@ void calculate_gyroscope_bias() {
 void calculate_accelerometer_bias() {
 	// Number of samples to average
     int num_samples = 2000;
-    long ax_sum = 0;
-    long ay_sum = 0;
-    long az_sum = 0;
+    float ax_sum = 0;
+    float ay_sum = 0;
+    float az_sum = 0;
 
     for (int i = 0; i < num_samples; i++) {
     	uint8_t buffer[14];
     	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
-    	ax_sum += (int16_t) (buffer[0] << 8 | buffer[1]) / ACC_SCALE;
-    	ay_sum += (int16_t) (buffer[2] << 8 | buffer[3]) / ACC_SCALE;
-    	az_sum += (int16_t) (buffer[4] << 8 | buffer[5]) / ACC_SCALE;
+    	ax_sum += (float)(int16_t) (buffer[0] << 8 | buffer[1]) / ACC_SCALE;
+    	ay_sum += (float)(int16_t) (buffer[2] << 8 | buffer[3]) / ACC_SCALE;
+    	az_sum += (float)(int16_t) (buffer[4] << 8 | buffer[5]) / ACC_SCALE;
     	HAL_Delay(1);
     }
 

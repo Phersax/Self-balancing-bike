@@ -52,38 +52,30 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+//encoder
+encoder_t enc;
+float rpm;
+
 //IMU
 extern Kalman filter;
-float pitch;
-float new_angle;
+float pitch, distance, distance_error, distance_setpoint, new_angle, pid_out;
 mpu_data data;
 HAL_StatusTypeDef status;
 
-//encoder
-encoder_t enc;
-
 //controllers
-PID_t pid_in;
-float Kp_in = 16;
-float Ki_in = 0.8;
-float Kd_in = 0.6;
-
-PID_t pid_ex;
-float Kp_ex = 50;
-float Ki_ex = 100;
-float Kd_ex = 1.05;
+PID_t pid;
+float Kp = 9;
+float Ki = 0.5;
+float Kd = 0.04;
 
 //control variables
 float pwm;
-float rpm_y;
-float rpm_r;
+float rpm_limit = 0.03;
+float weight_balance = 5;
 
-float set_point_angle = 1.5;
-//float min_angle = 1.5;
-float max_angle = 12;
-float max_rpm = 800;
-float max_pwm = 100;
-int vertical;
+float set_point = 0;
+float max_pid = 450;
+float max_pwm = 95;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,31 +119,22 @@ int main(void) {
 	MX_GPIO_Init();
 	MX_TIM5_Init();
 	MX_I2C1_Init();
-	MX_TIM3_Init();
 	MX_TIM1_Init();
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
-	pid_init(&pid_in, Kp_in, Ki_in, Kd_in, -max_pwm, max_pwm);
-	pid_init(&pid_ex, Kp_ex, Ki_ex, Kd_ex, -max_rpm, max_rpm);
-
-
-	 pid_ex.neg_deadzone = set_point_angle - 0.4;
-	 pid_ex.pos_deadzone = set_point_angle + 0.4;
-	 pid_ex.neg_deadzone = - 10;
-	 pid_ex.pos_deadzone = 10;
-
-
-	pid_set_setpoint(&pid_ex, set_point_angle);
+	pid_init(&pid, Kp, Ki, Kd, -max_pid, max_pid);
+	pid.pos_deadzone = 150;
+	pid.neg_deadzone = -150;
+	pid_set_setpoint(&pid, set_point);
 	status = mpu6050_init();
 
-	//kalman filter
+	// Kalman filter
 	Kalman_init(&filter);
 	Kalman_setAngle(&filter, 0);
 
 	nidec_h24_init();
 	encoder_init(&enc, AB, &htim1, 100);
 	HAL_TIM_Base_Start_IT(&htim2);
-	HAL_TIM_Base_Start_IT(&htim3);
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -211,33 +194,45 @@ void SystemClock_Config(void) {
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	if (htim->Instance == TIM3) {
+	if (htim->Instance == TIM2) {
 		data = mpu6050_data();
-		new_angle = atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
+		new_angle = atan2(data.ax, sqrt(data.ay * data.ay + data.az * data.az))
 				* 180 / M_PI;
-		pitch = Kalman_getAngle(&filter, new_angle, data.gx);
+		pitch = -Kalman_getAngle(&filter, new_angle, data.gy - gy_bias);
 
-		if (fabs(pitch - set_point_angle) < max_angle) {
-			rpm_r = pid_compute_control_action(&pid_ex, pitch);
-			vertical = 1;
+		distance = -10 * pitch;
+		distance_error = distance_setpoint - distance;
+
+		if (distance_error < distance_setpoint) {
+			distance_setpoint -= weight_balance * 0.004;
 		} else {
-			nidec_h24_Move(0, 0);
-			pid_reset(&pid_in);
-			pid_reset(&pid_ex);
-			vertical = 0;
-			pwm = 0;
-			rpm_r = 0;
-			pitch = 0;
+			distance_setpoint += weight_balance * 0.004;
 		}
 
-	}
-	if (htim->Instance == TIM2) {
-		rpm_y = encoder_get_velocity_rpm(&enc);
-		pid_set_setpoint(&pid_in, rpm_r);
+		rpm = encoder_get_pps(&enc);
 
-		if (vertical) {
-			pwm = pid_compute_control_action(&pid_in, rpm_y);
-			//nidec_h24_Move(pwm, 1);
+		if (pid_out < 0) {
+			if (rpm > 700) {
+				distance_setpoint -= rpm_limit;
+			}
+		}
+		if (pid_out > 0) {
+			if (rpm > 700) {
+				distance_setpoint += rpm_limit;
+			}
+		}
+
+
+
+		pid_set_setpoint(&pid, distance_setpoint);
+		if (pitch < -30 || pitch > 30) {
+			pwm = 0;
+			distance_setpoint = 0;
+			nidec_h24_Move(pwm, 0);
+		} else {
+			pid_out = pid_compute_control_action(&pid, distance);
+			pwm = max_pwm * pid_out / max_pid;
+			nidec_h24_Move(pwm, 1);
 		}
 	}
 }
