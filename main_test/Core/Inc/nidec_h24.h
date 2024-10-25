@@ -11,8 +11,11 @@
 /* To initialize the PWM and direction pins of the motor */
 void nidec_h24_init();
 
+int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min,
+		int32_t out_max);
+
 /* To make the motor turn based on the input */
-void nidec_h24_Move(float dutyCycle, uint8_t brk);
+void nidec_h24_Move(float modv, float max_modv, uint8_t brk);
 
 /* Useful getter functions to access the parameters of the PWM signal */
 uint32_t nidec_h24_GetPeriod();

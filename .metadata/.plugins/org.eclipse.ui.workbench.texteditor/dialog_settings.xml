@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="Reset"/>
 		<list key="findhistory">
+			<item value="reset"/>
+			<item value="pitch"/>
+			<item value="PI"/>
 			<item value="weight"/>
 			<item value="DT"/>
 			<item value="derivative"/>

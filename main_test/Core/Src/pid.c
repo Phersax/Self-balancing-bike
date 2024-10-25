@@ -24,7 +24,6 @@ void pid_set_setpoint(PID_t *p, float set_point) {
 
 float pid_compute_control_action(PID_t *p, float est_output) {
 	float error, integral_error, u, derivative, delta_T;
-	float alpha = 0.9;
 	float k_p = p->k_p;
 
 	error = pid_get_setpoint(p) - est_output;
@@ -33,14 +32,14 @@ float pid_compute_control_action(PID_t *p, float est_output) {
 
 	if (delta_T > 0.0 && p->k_d != 0.0) {
 		// Apply the low-pass filter to the derivative
-		derivative = alpha * p->d_term
-				+ (1 - alpha) * (error - p->last_error) / delta_T;
+		derivative = (error - p->last_error) / delta_T;
+
 	} else {
 		derivative = 0;
 	}
 
 	if (p->neg_deadzone < error && error < p->pos_deadzone) {
-		integral_error = p->integral_error + delta_T * error;
+		integral_error = p->integral_error + error *delta_T;
 	} else {
 		p->integral_error = 0;
 		integral_error = 0;
@@ -55,6 +54,7 @@ float pid_compute_control_action(PID_t *p, float est_output) {
 	i_action = p->i_term;
 	d_action = p->d_term;
 
+	/*
 	// reset wind-up
 	if (u < p->min_output) {
 		u = p->min_output;
@@ -63,6 +63,7 @@ float pid_compute_control_action(PID_t *p, float est_output) {
 	} else {
 		p->integral_error = integral_error;
 	}
+	*/
 
 	last_u = u;
 
@@ -89,6 +90,7 @@ void pid_update_ts(PID_t *p) {
 }
 
 void pid_reset(PID_t *p) {
+	p->set_point = 0;
 	p->integral_error = 0;
 	p->last_error = 0;
 	p->last_updated_ts = 0;

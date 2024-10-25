@@ -1,5 +1,5 @@
 ../Core/Src/mpu6050.c:17:19:mpu6050_init	32	static
-../Core/Src/mpu6050.c:47:6:calculate_gyroscope_bias	72	static
+../Core/Src/mpu6050.c:47:6:calculate_gyroscope_bias	64	static
 ../Core/Src/mpu6050.c:69:6:calculate_accelerometer_bias	64	static
 ../Core/Src/mpu6050.c:91:8:mpu6050_accx	64	static
 ../Core/Src/mpu6050.c:101:8:mpu6050_accy	64	static

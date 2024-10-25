@@ -8,9 +8,9 @@ extern I2C_HandleTypeDef hi2c1;
 float ax_bias = 0;
 float ay_bias = 0;
 float az_bias = 0;
-float gx_bias = 0;
-float gy_bias = 0;
-float gz_bias = 0;
+int16_t gx_bias = 0;
+int16_t gy_bias = 0;
+int16_t gz_bias = 0;
 
 
 /*mpu6050 initialization*/
@@ -54,9 +54,9 @@ void calculate_gyroscope_bias() {
     for (int i = 0; i < num_samples; i++) {
     	uint8_t buffer[14];
     	HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, ACCEL_XOUT_H_REG, I2C_MEMADD_SIZE_8BIT, buffer, 14, 100);
-    	gx_sum += (float)(int16_t) (buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
-    	gy_sum += (float)(int16_t) (buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
-    	gz_sum += (float)(int16_t) (buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
+    	gx_sum += (int16_t)(buffer[8] << 8 | buffer[9]);
+    	gy_sum += (int16_t)(buffer[10] << 8 | buffer[11]);
+    	gz_sum += (int16_t)(buffer[12] << 8 | buffer[13]);
     	HAL_Delay(1);
     }
 
@@ -157,9 +157,9 @@ mpu_data mpu6050_data() {
 	 data.ax = (float)(int16_t)(buffer[0] << 8 | buffer[1]) / ACC_SCALE;
 	 data.ay = (float)(int16_t)(buffer[2] << 8 | buffer[3]) / ACC_SCALE;
 	 data.az = (float)(int16_t)(buffer[4] << 8 | buffer[5]) / ACC_SCALE;
-	 data.gx = (float)(int16_t)(buffer[8] << 8 | buffer[9]) / GYRO_SCALE;
-	 data.gy = (float)(int16_t)(buffer[10] << 8 | buffer[11]) / GYRO_SCALE;
-	 data.gz = (float)(int16_t)(buffer[12] << 8 | buffer[13]) / GYRO_SCALE;
+	 data.gx = (float)(int16_t)((buffer[8] << 8 | buffer[9])- gx_bias) / GYRO_SCALE ;
+	 data.gy = (float)(int16_t)((buffer[10] << 8 | buffer[11])- gy_bias) / GYRO_SCALE;
+	 data.gz = (float)(int16_t)((buffer[12] << 8 | buffer[13])- gz_bias) / GYRO_SCALE;
 	 return data;
 }
 

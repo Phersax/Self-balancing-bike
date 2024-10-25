@@ -54,7 +54,6 @@
 /* USER CODE BEGIN PV */
 //encoder
 encoder_t enc;
-float rpm;
 
 //IMU
 extern Kalman filter;
@@ -62,20 +61,24 @@ float pitch, distance, distance_error, distance_setpoint, new_angle, pid_out;
 mpu_data data;
 HAL_StatusTypeDef status;
 
-//controllers
+//PID
 PID_t pid;
-float Kp = 9;
-float Ki = 0.5;
-float Kd = 0.04;
+float Kp = 10;
+float Ki = 0.1;
+float Kd = 0.42;
 
 //control variables
-float pwm;
-float rpm_limit = 0.03;
-float weight_balance = 5;
-
+float pps;
+float rpm_limit = 0.022;
+float weight_balance = 6.5;
 float set_point = 0;
 float max_pid = 450;
-float max_pwm = 95;
+float dt_callback = 0.004;
+
+//kalman test
+float angle_offset = -1;
+float pitch_angle;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -196,44 +199,44 @@ void SystemClock_Config(void) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
 		data = mpu6050_data();
-		new_angle = atan2(data.ax, sqrt(data.ay * data.ay + data.az * data.az))
+		new_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
 				* 180 / M_PI;
-		pitch = -Kalman_getAngle(&filter, new_angle, data.gy - gy_bias);
+		pitch_angle = -Kalman_getAngle(&filter, new_angle, data.gy);
 
-		distance = -10 * pitch;
+		pitch_angle = pitch_angle - angle_offset;
+
+		distance = -10 * pitch_angle;
 		distance_error = distance_setpoint - distance;
 
 		if (distance_error < distance_setpoint) {
-			distance_setpoint -= weight_balance * 0.004;
+			distance_setpoint -= weight_balance * dt_callback;
 		} else {
-			distance_setpoint += weight_balance * 0.004;
+			distance_setpoint += weight_balance * dt_callback;
 		}
 
-		rpm = fabs(encoder_get_pps(&enc)); 
-
+		pps = fabs(encoder_get_pps(&enc));
 
 		if (pid_out < 0) {
-			if (rpm > 700) {
+			if (pps > 700) {
 				distance_setpoint -= rpm_limit;
 			}
 		}
+
 		if (pid_out > 0) {
-			if (rpm > 700) {
+			if (pps > 700) {
 				distance_setpoint += rpm_limit;
 			}
 		}
 
-
-
 		pid_set_setpoint(&pid, distance_setpoint);
-		if (pitch < -30 || pitch > 30) {
-			//pwm = 0;
+
+		if (pitch_angle < -30 || pitch_angle > 30) {
 			distance_setpoint = 0;
-			nidec_h24_Move(pwm, 0);
+			nidec_h24_Move(0, 0, 0);
+			pid_reset(&pid);
 		} else {
 			pid_out = pid_compute_control_action(&pid, distance);
-			//pwm = max_pwm * pid_out / max_pid;
-			nidec_h24_Move(pwm, 1);
+			nidec_h24_Move(pid_out, 450, 1);
 		}
 	}
 }

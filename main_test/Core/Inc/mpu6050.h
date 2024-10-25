@@ -50,9 +50,9 @@
 extern float ax_bias;
 extern float ay_bias;
 extern float az_bias;
-extern float gx_bias;
-extern float gy_bias;
-extern float gz_bias;
+extern int16_t gx_bias;
+extern int16_t gy_bias;
+extern int16_t gz_bias;
 
 typedef struct {
     float data;
