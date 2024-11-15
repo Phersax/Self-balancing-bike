@@ -124,6 +124,10 @@ int main(void) {
 	MX_I2C1_Init();
 	MX_TIM1_Init();
 	MX_TIM2_Init();
+
+	//for htim2 the fclk is the plck1
+	enc.dt_enc=(((((float)htim2.Init.Period))+1)*(((float)htim2.Init.Prescaler)+1)/((float)HAL_RCC_GetPCLK1Freq()));
+
 	/* USER CODE BEGIN 2 */
 	pid_init(&pid, Kp, Ki, Kd, -max_pid, max_pid);
 	pid.pos_deadzone = 150;
@@ -199,8 +203,8 @@ void SystemClock_Config(void) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
 		data = mpu6050_data();
-		new_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
-				* 180 / M_PI;
+		new_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))* 180 / M_PI;
+
 		pitch_angle = -Kalman_getAngle(&filter, new_angle, data.gy);
 
 		pitch_angle = pitch_angle - angle_offset;

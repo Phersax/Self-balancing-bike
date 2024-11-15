@@ -13,34 +13,44 @@ int16_t gy_bias = 0;
 int16_t gz_bias = 0;
 
 
+
 /*mpu6050 initialization*/
 HAL_StatusTypeDef mpu6050_init(){
-	HAL_StatusTypeDef status = HAL_I2C_IsDeviceReady(&hi2c1, IMU_ADDR, 1, 100);
-		if (status == HAL_OK) {
-			uint8_t data;
 
-			/* power management register 0X6B must be all 0s to wake the sensor up */
-			data = 0;
-			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, PWR_MGMT_1_REG, 1, &data, 1, 100);
+	uint8_t whoami;
 
-			/* Set DATA RATE of 1KHz by writing SMPLRT_DIV register */
-			data = 0x07;
-			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, SMPLRT_DIV_REG, 1, &data, 1, 100);
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(&hi2c1, IMU_ADDR, WHO_AM_I_REG, I2C_MEMADD_SIZE_8BIT, &whoami, 1, 100);
 
-			/*  Set accelerometer configuration in ACCEL_CONFIG Register */
-			/* XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=0 ->  2g */
-			data = 0x10; //
-			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, ACCEL_CONFIG_REG, 1, &data, 1, 100);
+	if (status == HAL_OK) {
+			  if (whoami == WHO_AM_I_VAL){
+				  HAL_StatusTypeDef status = HAL_I2C_IsDeviceReady(&hi2c1, IMU_ADDR, 1, 100);
+				  if (status == HAL_OK) {
+						uint8_t data;
 
-			/* Set Gyroscope configuration in GYRO_CONFIG Register */
-			/* XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 ->  250 deg/s */
-			data = 0x08; //
-			HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
+						/* power management register 0X6B must be all 0s to wake the sensor up */
+						data = 0;
+						HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, PWR_MGMT_1_REG, 1, &data, 1, 100);
 
-			calculate_gyroscope_bias();
-			//calculate_accelerometer_bias();
-		}
-		return status;
+						/* Set DATA RATE of 1KHz by writing SMPLRT_DIV register */
+						data = 0x07;
+						HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, SMPLRT_DIV_REG, 1, &data, 1, 100);
+
+						/*  Set accelerometer configuration in ACCEL_CONFIG Register */
+						/* XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=0 ->  2g */
+						data = 0x10; //
+						HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, ACCEL_CONFIG_REG, 1, &data, 1, 100);
+
+						/* Set Gyroscope configuration in GYRO_CONFIG Register */
+						/* XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 ->  250 deg/s */
+						data = 0x08; //
+						HAL_I2C_Mem_Write(&hi2c1, IMU_ADDR, GYRO_CONFIG_REG, 1, &data, 1, 100);
+
+						calculate_gyroscope_bias();
+						//calculate_accelerometer_bias();
+					}
+			  }
+	}
+	return status;
 }
 
 /*Gyroscope bias calculate*/
