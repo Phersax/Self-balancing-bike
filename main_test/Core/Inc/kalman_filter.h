@@ -13,7 +13,7 @@ typedef struct {
 } Kalman;
 
 // Initialize the Kalman filter
-void kalman_init(Kalman* k, float angle);
+void kalman_init(Kalman* k);
 
 // Update estimated angle
 void kalmanUpdate(Kalman *k, float input, float measurement);

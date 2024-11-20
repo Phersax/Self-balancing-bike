@@ -1,8 +1,8 @@
 #include "kalman_filter.h"
 
 // Filter initialization function
-void kalman_init(Kalman* k, float angle) {
-    k->angle = angle;
+void kalman_init(Kalman* k) {
+    k->angle = 0;
     k->uncertainty = 2*2;
     k->kalmanGain = 0; // Initial gain
 }

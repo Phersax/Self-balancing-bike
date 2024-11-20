@@ -8,7 +8,7 @@
 /*Default timer settings*/
 extern TIM_HandleTypeDef htim5;
 
-static int32_t out_ccr;
+int32_t out_ccr;
 
 /* To initialize the PWM and direction pins of the motor */
 void nidec_h24_init() {

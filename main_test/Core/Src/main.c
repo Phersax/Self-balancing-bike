@@ -72,11 +72,10 @@ static float set_point = 0;
 static float max_pid = 450;
 
 //kalman
-static float in_angle;
 static Kalman filter;
 static float angle_offset = -1;
 static float pitch_angle;
-
+//static float k = 100;
 
 //sampling time timer2
 static float dt;
@@ -104,6 +103,7 @@ void SystemClock_Config(void);
  * @retval int
  */
 int main(void) {
+
 	/* USER CODE BEGIN 1 */
 
 	/* USER CODE END 1 */
@@ -142,12 +142,8 @@ int main(void) {
 	//imu init
 	status = mpu6050_init();
 
-	data = mpu6050_data(); //achieve the initial angle for the kalman filter
-
-	in_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))* 180 / M_PI;
-
 	// Kalman filter init
-	kalman_init(&filter, in_angle ); //set the initial angle
+	kalman_init(&filter);
 
 	//motor init
 	nidec_h24_init();
@@ -216,7 +212,6 @@ void SystemClock_Config(void) {
 }
 
 /* USER CODE BEGIN 4 */
-
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 	if (htim->Instance == TIM2) {
@@ -228,38 +223,38 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 		kalmanUpdate(&filter, data.gy, new_angle);
 
-
 		pitch_angle = filter.angle - angle_offset;
 
-		distance = -10 * pitch_angle;
-		distance_error = distance_setpoint - distance;
+		if (htim->Instance->CNT > 3) {
+			distance = -10 * pitch_angle;
+			distance_error = distance_setpoint - distance;
 
-		if (distance_error < distance_setpoint) {
-			distance_setpoint -= weight_balance * dt;
-		} else {
-			distance_setpoint += weight_balance * dt;
-		}
+			if (distance_error < distance_setpoint) {
+				distance_setpoint -= weight_balance * dt;
+			} else {
+				distance_setpoint += weight_balance * dt;
+			}
 
-		rpm = fabs(encoder_get_pps(&enc));
+			rpm = fabs(encoder_get_pps(&enc));
 
-		if (pid_out < 0 && rpm > 700)
-			distance_setpoint -= rpm_limit;
+			if (pid_out < 0 && rpm > 700)
+				distance_setpoint -= rpm_limit;
 
-		if (pid_out > 0 && rpm > 700)
-			distance_setpoint += rpm_limit;
+			if (pid_out > 0 && rpm > 700)
+				distance_setpoint += rpm_limit;
 
-		pid_set_setpoint(&pid, distance_setpoint);
+			pid_set_setpoint(&pid, distance_setpoint);
 
-		if (pitch_angle < -20 || pitch_angle > 20) {
-			distance_setpoint = 0;
-			nidec_h24_Move(0, 0, 0);
-			pid_reset(&pid);
-		} else {
-			pid_out = pid_compute_control_action(&pid, distance);
-			nidec_h24_Move(pid_out, 450, 1);
+			if (pitch_angle < -20 || pitch_angle > 20) {
+				distance_setpoint = 0;
+				nidec_h24_Move(0, 0, 0);
+				pid_reset(&pid);
+			} else {
+				pid_out = pid_compute_control_action(&pid, distance);
+				nidec_h24_Move(pid_out, 450, 1);
+			}
 		}
 	}
-
 }
 
 float getDt(TIM_HandleTypeDef *htim) {
