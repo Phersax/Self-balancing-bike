@@ -1,5 +1,0 @@
-../Core/Src/encoder.c:5:19:encoder_init	5
-../Core/Src/encoder.c:30:20:__encoder_update	5
-../Core/Src/encoder.c:60:7:encoder_get_velocity_rps	1
-../Core/Src/encoder.c:65:7:encoder_get_velocity_rpm	1
-../Core/Src/encoder.c:69:7:encoder_get_velocity_rads	1
