@@ -3,8 +3,8 @@
 
 #include "main.h"
 
-#define BETA 0 //0.95
-//#define DT_enc 0.004
+#define BETA 0.98 //0.95
+#define DT_enc 0.004
 
 typedef enum {
     A = TIM_CHANNEL_1,
@@ -18,7 +18,6 @@ typedef struct {
     uint16_t ppr;  // pulses per revolution
     int resolution;  // counts per pulses
     int32_t velocity_pps;
-    float dt_enc;
 } encoder_t;
 
 HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch, TIM_HandleTypeDef *htim, uint32_t ppr);

@@ -50,34 +50,41 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
 //encoder
-encoder_t enc;
+static encoder_t enc;
+static float rpm;
 
 //IMU
-extern Kalman filter;
-float pitch, distance, distance_error, distance_setpoint, new_angle, pid_out;
-mpu_data data;
-HAL_StatusTypeDef status;
+static float distance, distance_error, distance_setpoint, new_angle, pid_out;
+static mpu_data data;
+static HAL_StatusTypeDef status;
 
-//PID
-PID_t pid;
-float Kp = 10;
-float Ki = 0.1;
-float Kd = 0.42;
+//controllers
+static PID_t pid;
+static float Kp = 9;
+static float Ki = 0.05;
+static float Kd = 0.4;
 
-//control variables
-float pps;
-float rpm_limit = 0.022;
-float weight_balance = 6.5;
-float set_point = 0;
-float max_pid = 450;
-float dt_callback = 0.004;
+//Control variables
+static float rpm_limit = 0.03;
+static float weight_balance = 5;
+static float set_point = 0;
+static float max_pid = 450;
 
-//kalman test
-float angle_offset = -1;
-float pitch_angle;
+//kalman
+static float in_angle;
+static Kalman filter;
+static float angle_offset = -1;
+static float pitch_angle;
+
+
+//sampling time timer2
+static float dt;
+
+/* USER CODE BEGIN PV */
+
+//prototype to get the dt
+float getDt(TIM_HandleTypeDef *htim);
 
 /* USER CODE END PV */
 
@@ -97,7 +104,6 @@ void SystemClock_Config(void);
  * @retval int
  */
 int main(void) {
-
 	/* USER CODE BEGIN 1 */
 
 	/* USER CODE END 1 */
@@ -124,29 +130,39 @@ int main(void) {
 	MX_I2C1_Init();
 	MX_TIM1_Init();
 	MX_TIM2_Init();
-
-	//for htim2 the fclk is the plck1
-	enc.dt_enc=(((((float)htim2.Init.Period))+1)*(((float)htim2.Init.Prescaler)+1)/((float)HAL_RCC_GetPCLK1Freq()));
-
 	/* USER CODE BEGIN 2 */
-	pid_init(&pid, Kp, Ki, Kd, -max_pid, max_pid);
-	pid.pos_deadzone = 150;
-	pid.neg_deadzone = -150;
+
+	//compute dt of timer2
+	dt = getDt(&htim2);
+
+	//pid config
+	pid_init(&pid, Kp, Ki, Kd, -max_pid, max_pid, 150, -150);
 	pid_set_setpoint(&pid, set_point);
+
+	//imu init
 	status = mpu6050_init();
 
-	// Kalman filter
-	Kalman_init(&filter);
-	Kalman_setAngle(&filter, 0);
+	data = mpu6050_data(); //achieve the initial angle for the kalman filter
 
+	in_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))* 180 / M_PI;
+
+	// Kalman filter init
+	kalman_init(&filter, in_angle ); //set the initial angle
+
+	//motor init
 	nidec_h24_init();
+
+	//encoder init
 	encoder_init(&enc, AB, &htim1, 100);
+
+	//the timer2 starts
 	HAL_TIM_Base_Start_IT(&htim2);
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1) {
+
 		HAL_Delay(1);
 		/* USER CODE END WHILE */
 
@@ -200,41 +216,41 @@ void SystemClock_Config(void) {
 }
 
 /* USER CODE BEGIN 4 */
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+
 	if (htim->Instance == TIM2) {
+
 		data = mpu6050_data();
-		new_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))* 180 / M_PI;
 
-		pitch_angle = -Kalman_getAngle(&filter, new_angle, data.gy);
+		new_angle = -atan(data.ax / sqrt(data.ay * data.ay + data.az * data.az))
+				* 180 / M_PI;
 
-		pitch_angle = pitch_angle - angle_offset;
+		kalmanUpdate(&filter, data.gy, new_angle);
+
+
+		pitch_angle = filter.angle - angle_offset;
 
 		distance = -10 * pitch_angle;
 		distance_error = distance_setpoint - distance;
 
 		if (distance_error < distance_setpoint) {
-			distance_setpoint -= weight_balance * dt_callback;
+			distance_setpoint -= weight_balance * dt;
 		} else {
-			distance_setpoint += weight_balance * dt_callback;
+			distance_setpoint += weight_balance * dt;
 		}
 
-		pps = fabs(encoder_get_pps(&enc));
+		rpm = fabs(encoder_get_pps(&enc));
 
-		if (pid_out < 0) {
-			if (pps > 700) {
-				distance_setpoint -= rpm_limit;
-			}
-		}
+		if (pid_out < 0 && rpm > 700)
+			distance_setpoint -= rpm_limit;
 
-		if (pid_out > 0) {
-			if (pps > 700) {
-				distance_setpoint += rpm_limit;
-			}
-		}
+		if (pid_out > 0 && rpm > 700)
+			distance_setpoint += rpm_limit;
 
 		pid_set_setpoint(&pid, distance_setpoint);
 
-		if (pitch_angle < -30 || pitch_angle > 30) {
+		if (pitch_angle < -20 || pitch_angle > 20) {
 			distance_setpoint = 0;
 			nidec_h24_Move(0, 0, 0);
 			pid_reset(&pid);
@@ -243,7 +259,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			nidec_h24_Move(pid_out, 450, 1);
 		}
 	}
+
 }
+
+float getDt(TIM_HandleTypeDef *htim) {
+	if (htim->Instance == TIM2 || htim->Instance == TIM3
+			|| htim->Instance == TIM4 || htim->Instance == TIM5
+			|| htim->Instance == TIM6 || htim->Instance == TIM7)
+		return (float) (((uint32_t) htim->Instance->ARR) + 1)
+				* (((uint32_t) htim->Instance->PSC) + 1)
+				/ ((uint32_t) HAL_RCC_GetPCLK1Freq() * 2);
+	else
+		return (float) (((uint32_t) htim->Instance->ARR) + 1)
+				* (((uint32_t) htim->Instance->PSC) + 1)
+				/ ((uint32_t) HAL_RCC_GetPCLK2Freq() * 2);
+}
+
 /* USER CODE END 4 */
 
 /**

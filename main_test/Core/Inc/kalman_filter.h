@@ -1,40 +1,22 @@
 #ifndef KALMAN_H
 #define KALMAN_H
+#include "main.h"
 
-#define DT_k 0.004
+#define DT_k 0.004  // Passo temporale (in secondi)
+#define PROCESS_NOISE (DT_k * DT_k * 4 * 4)  // Rumore di processo
+#define MEASURE_NOISE (3 * 3)  // Rumore di misura
 
 typedef struct {
-    float Q_angle;
-    float Q_bias;
-    float R_measure;
-
-    float angle;
-    float bias;
-    float rate;
-
-    float P[2][2];
+    float angle;            // Stato angolare (ad esempio Roll o Pitch)
+    float uncertainty;      // Incertezza associata allo stato
+    float kalmanGain;       // Guadagno di Kalman (calcolato internamente)
 } Kalman;
 
 // Initialize the Kalman filter
-void Kalman_init(Kalman* k);
+void kalman_init(Kalman* k, float angle);
 
-// Get the estimated angle
-float Kalman_getAngle(Kalman* k, float newAngle, float newRate);
+// Update estimated angle
+void kalmanUpdate(Kalman *k, float input, float measurement);
 
-// Set the initial angle
-void Kalman_setAngle(Kalman* k, float angle);
-
-// Return the unbiased rate of change
-float Kalman_getRate(Kalman* k);
-
-// Functions to adjust the Kalman filter parameters
-void Kalman_setQangle(Kalman* k, float Q_angle);
-void Kalman_setQbias(Kalman* k, float Q_bias);
-void Kalman_setRmeasure(Kalman* k, float R_measure);
-
-// Functions to get the Kalman filter parameters
-float Kalman_getQangle(Kalman* k);
-float Kalman_getQbias(Kalman* k);
-float Kalman_getRmeasure(Kalman* k);
 
 #endif // KALMAN_H

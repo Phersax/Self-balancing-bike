@@ -7,7 +7,7 @@ float p_action, i_action, d_action, error_debug;
 static float last_u;
 
 void pid_init(PID_t *p, float k_p, float k_i, float k_d, float min_out,
-		float max_out) {
+		float max_out, float pos_deadzone, float neg_deadzone) {
 	p->k_p = k_p;
 	p->k_i = k_i;
 	p->k_d = k_d;
@@ -16,6 +16,8 @@ void pid_init(PID_t *p, float k_p, float k_i, float k_d, float min_out,
 	p->last_updated_ts = 0;
 	p->min_output = min_out;
 	p->max_output = max_out;
+	p->pos_deadzone = pos_deadzone;
+	p->neg_deadzone = neg_deadzone;
 }
 
 void pid_set_setpoint(PID_t *p, float set_point) {

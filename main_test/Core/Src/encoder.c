@@ -2,19 +2,21 @@
 #include "main.h"
 #include <math.h>
 
-HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch,
-		TIM_HandleTypeDef *htim, uint32_t ppr) {
-	HAL_StatusTypeDef ret;
-	ret = HAL_OK;
+HAL_StatusTypeDef encoder_init(encoder_t *e, channel ch, TIM_HandleTypeDef *htim, uint32_t ppr) {
+
+	HAL_StatusTypeDef ret = HAL_OK;
+
 	if (htim == NULL)
 		return HAL_ERROR;
 
 	e->tim = htim;
 	htim->Instance->CNT = 0;
 	ret = HAL_TIM_Encoder_Start(htim, ch);
+
 	if (ret != HAL_OK)
 		return ret;
 
+	//if the encoder is in quadrature, the resolution is 4
 	if (ch == A || ch == B)
 		e->resolution = 2;
 	else
@@ -35,22 +37,22 @@ inline static void __encoder_update(encoder_t *e) {
 
 	// Handle overflow and underflow
 	if (__HAL_TIM_IS_TIM_COUNTING_DOWN(e->tim)) {
-		if (cur_cnt < e->last_count) // underflow
-			diff = e->last_count - cur_cnt;
+		if ((uint32_t)cur_cnt < (uint32_t)e->last_count) // underflow
+			diff = (uint32_t)e->last_count - (uint32_t)cur_cnt;
 		else
-			diff = (e->tim->Instance->ARR - cur_cnt) + e->last_count;
+			diff = ((uint32_t)e->tim->Instance->ARR - (uint32_t)cur_cnt) + (uint32_t)e->last_count;
 	} else {
 		if (cur_cnt > e->last_count) // overflow
-			diff = e->last_count - cur_cnt;
+			diff = (uint32_t)e->last_count - (uint32_t)cur_cnt;
 		else
-			diff = (e->tim->Instance->ARR - e->last_count) + cur_cnt;
+			diff = ((uint32_t)e->tim->Instance->ARR - (uint32_t)e->last_count) + (uint32_t)cur_cnt;
 	}
 
 	// velocity in pulses per second
-	if (e->last_count == cur_cnt)
+	if ((uint32_t)e->last_count == (uint32_t)cur_cnt)
 		diff = 0;
 
-	cur_velocity = (float) diff / e->dt_enc / (float) e->resolution;
+	cur_velocity = (float) diff / DT_enc / (float) e->resolution;
 
 	// Filtering velocity
 	e->velocity_pps = BETA * e->velocity_pps + (1.0 - BETA) * cur_velocity;

@@ -55,17 +55,17 @@ extern int16_t gy_bias;
 extern int16_t gz_bias;
 
 typedef struct {
-    float data;
-    HAL_StatusTypeDef status;
+	float data;
+	HAL_StatusTypeDef status;
 } result;
 
 typedef struct {
-    float ax;
-    float ay;
-    float az;
-    float gx;
-    float gy;
-    float gz;
+	float ax;
+	float ay;
+	float az;
+	float gx;
+	float gy;
+	float gz;
 } mpu_data;
 
 /*mpu6050 initialization*/
@@ -92,6 +92,5 @@ mpu_data mpu6050_data();
 
 /* Temperature reading MPU6050 */
 short mpu6050_temp();
-
 
 #endif /* INC_MPU6050_H_ */
