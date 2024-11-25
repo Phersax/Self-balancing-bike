@@ -10,7 +10,6 @@ gx_bias
 gy_bias
 gz_bias
 pid_out
-pwm
 new_angle
 KalmanAnglePitch
 pid
@@ -20,3 +19,4 @@ distance_setpoint
 angle_offset
 pitch_angle
 weight_balance
+dt
