@@ -23,7 +23,7 @@ and gyroscope.
 <img src="media/FinalWork.jpg" alt="Final Overview" width="500" height="400">
 
 ## Schematic
-<img src="media/schematic.png" alt="Schematic" width="500" height="400">
+<img src="media/schematic.png" alt="Schematic" width="510" height="330">
 
 
 ## Additional info
