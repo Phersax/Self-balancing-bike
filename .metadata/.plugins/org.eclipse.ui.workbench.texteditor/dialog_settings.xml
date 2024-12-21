@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Reset"/>
+		<item key="selection" value="DIR"/>
 		<list key="findhistory">
+			<item value="DIR"/>
 			<item value="reset"/>
 			<item value="pitch"/>
 			<item value="PI"/>
