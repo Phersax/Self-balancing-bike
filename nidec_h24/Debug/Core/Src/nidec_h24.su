@@ -1,0 +1,5 @@
+../Core/Src/nidec_h24.c:9:6:nidec_h24_init	16	static
+../Core/Src/nidec_h24.c:63:6:nidec_h24_SetPrescaler	16	static
+../Core/Src/nidec_h24.c:69:6:nidec_h24_SetPeriod	16	static
+../Core/Src/nidec_h24.c:75:6:nidec_h24_SetCounter	16	static
+../Core/Src/nidec_h24.c:81:6:nidec_h24_SetDutyCycle	24	static

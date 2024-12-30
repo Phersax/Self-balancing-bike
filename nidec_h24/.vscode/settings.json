@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.dpf": "yaml",
+        "main.h": "c"
+    }
+}
